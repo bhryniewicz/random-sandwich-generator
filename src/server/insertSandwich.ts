@@ -1,0 +1,81 @@
+import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
+import { ICreatedSandwich } from "@/types/sandwich";
+
+export const getSandwich = async (
+  id: string
+): Promise<ICreatedSandwich | undefined> => {
+  console.log(id, "in getSandwich");
+  try {
+    const response = await fetch(`/api/sandwich/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to get sandwich with this ID");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const insertSandwich = async (
+  bread: IBreadStuff | null,
+  product: ProductBase[],
+  sauce: ISauce | null
+) => {
+  const newSandwich = {
+    name: "new",
+    sandwich: {
+      bread,
+      product,
+      sauce,
+    },
+  };
+
+  try {
+    const response = await fetch("/api/sandwich", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newSandwich),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to insert sandwich");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteSandwich = async (id: string) => {
+  try {
+    const response = await fetch(`/api/sandwich`, {
+      method: "DELETE",
+      body: JSON.stringify({
+        id,
+      }),
+    });
+    return response;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const editSandwich = async (sandwich: ICreatedSandwich) => {
+  try {
+    await fetch("/api/sandwich", {
+      method: "PUT",
+      body: JSON.stringify(sandwich),
+    });
+  } catch (e) {
+    console.error(e);
+  }
+};

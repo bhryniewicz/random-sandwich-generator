@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,7 +13,20 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      backgroundImage: {
+        'custom-pattern': `
+          linear-gradient(135deg, #faab5c 25%, transparent 25%), 
+          linear-gradient(225deg, #faab5c 25%, transparent 25%), 
+          linear-gradient(45deg, #faab5c 25%, transparent 25%), 
+          linear-gradient(315deg, #faab5c 25%, #f6d6aa 25%)
+        `,
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;
