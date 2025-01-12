@@ -3,7 +3,7 @@
 import { editSandwich, getSandwich } from "@/server/insertSandwich";
 import { ICreatedSandwich } from "@/types/sandwich";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { EditSandwichValues } from "./schema";
 
@@ -24,7 +24,7 @@ export default function EditSandwichPage() {
 
   const {
     name,
-    sandwich: { bread, product, sauce },
+    sandwich: { bread, sauce },
   } = data;
 
   const onSubmit = async (changedData: EditSandwichValues) => {
@@ -35,15 +35,9 @@ export default function EditSandwichPage() {
     };
 
     console.log(editedSandwich);
-
     await editSandwich(editedSandwich);
+    redirect("/sandwiches");
   };
-
-  const products = product
-    .map((prod) => {
-      return prod.name;
-    })
-    .join(",");
 
   return (
     <div>
@@ -57,12 +51,6 @@ export default function EditSandwichPage() {
         />
         Sandwich
         <p>Bread</p>
-        <input
-          type="text"
-          id="bread"
-          defaultValue={bread.name}
-          {...register("sandwich.bread")}
-        />
         <p>Products</p>
         {/* <ul>
           {product.map((prod) => {
@@ -75,12 +63,6 @@ export default function EditSandwichPage() {
           defaultValue={products}
           {...register("sandwich.product")}
         /> */}
-        <input
-          type="text"
-          id="sauce"
-          defaultValue={sauce.name}
-          {...register("sandwich.sauce")}
-        />
         <button>Submit</button>
       </form>
     </div>

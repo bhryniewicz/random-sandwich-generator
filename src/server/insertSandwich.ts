@@ -1,10 +1,8 @@
-import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
-import { ICreatedSandwich } from "@/types/sandwich";
+import { ICreatedSandwich, ISandwich } from "@/types/sandwich";
 
 export const getSandwich = async (
   id: string
 ): Promise<ICreatedSandwich | undefined> => {
-  console.log(id, "in getSandwich");
   try {
     const response = await fetch(`/api/sandwich/${id}`, {
       method: "GET",
@@ -24,18 +22,10 @@ export const getSandwich = async (
   }
 };
 
-export const insertSandwich = async (
-  bread: IBreadStuff | null,
-  product: ProductBase[],
-  sauce: ISauce | null
-) => {
+export const insertSandwich = async (name: string, sandwich: ISandwich) => {
   const newSandwich = {
-    name: "new",
-    sandwich: {
-      bread,
-      product,
-      sauce,
-    },
+    name,
+    sandwich,
   };
 
   try {

@@ -12,6 +12,8 @@ import { Button } from "../ui/button";
 import { insertSandwich } from "@/server/insertSandwich";
 import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
 import { FC } from "react";
+import { useForm } from "react-hook-form";
+import { Input } from "../ui/input";
 
 interface SandwichGeneratorProps {
   products: ProductBase[];
@@ -34,6 +36,12 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
     resetSandwichGeneration,
   } = useGenerateSandwich(products, breadStuff, sauces);
 
+  const sandwich = {
+    bread,
+    product,
+    sauce,
+  };
+
   return (
     <div className="flex flex-col gap-8 w-[400px]">
       <Card className=" p-8">
@@ -55,7 +63,7 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
           <p>Sauce: {sauce && `${sauce.name} - ${sauce.type}`}</p>
         </CardContent>
         <Button
-          variant={"outline"}
+          variant={"default"}
           onClick={handleGenerateSandwich}
           disabled={isChoosing}
         >
@@ -64,25 +72,49 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
       </Card>
 
       {isGenerated && (
-        <Card className="flex flex-col gap-4 p-8">
-          <CardTitle>Do you want to save this sandwich?</CardTitle>
-          <CardDescription>
-            Saving option gives a possility to check later on what sandwich you
-            ve got but also editing and more exiciting stuff.
-          </CardDescription>
-          <div className="flex gap-2">
-            <Button
-              variant={"default"}
-              onClick={() => insertSandwich(bread, product, sauce)}
-            >
-              Save
-            </Button>
-            <Button variant={"secondary"} onClick={resetSandwichGeneration}>
-              Cancel
-            </Button>
-          </div>
-        </Card>
+        <AddSandwichForm
+          sandwich={sandwich}
+          resetSandwichGeneration={resetSandwichGeneration}
+        />
       )}
     </div>
+  );
+};
+
+const AddSandwichForm = ({ sandwich, resetSandwichGeneration }) => {
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      name: "New Sandwich",
+    },
+  });
+
+  const onSubmit = async (data) => {
+    await insertSandwich(data.name, sandwich);
+    resetSandwichGeneration();
+  };
+
+  return (
+    <Card className="flex flex-col gap-6 p-8">
+      <CardTitle>Do you want to save this sandwich?</CardTitle>
+      <CardDescription>
+        Saving option gives a possility to check later on what sandwich you ve
+        got but also editing and more exiciting stuff.
+      </CardDescription>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+        <Input id="name" {...register("name")} />
+        <div className="flex gap-2">
+          <Button variant={"default"} type="submit">
+            Save
+          </Button>
+          <Button
+            variant={"secondary"}
+            type="button"
+            onClick={resetSandwichGeneration}
+          >
+            Cancel
+          </Button>
+        </div>
+      </form>
+    </Card>
   );
 };
