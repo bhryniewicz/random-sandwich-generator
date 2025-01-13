@@ -7,22 +7,14 @@ import { useParams } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { editFormSchema, EditSandwichValues } from "./schema";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
+import { Form } from "../ui/form";
 import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
 import { FC } from "react";
 import { Card } from "../ui/card";
 import { ComboboxSelect } from "../ComboboxSelect";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import Image from "next/image";
-import Sandwich from "@/assets/sandwich.png";
+import { FormInput } from "../FormInput";
+import { Loader } from "../Loader";
 
 interface EditSandwichFormProps {
   breads: IBreadStuff[];
@@ -37,7 +29,7 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
 }) => {
   const { id } = useParams();
 
-  const { data, isLoading, isError } = useQuery<ICreatedSandwich | undefined>({
+  const { data, isLoading } = useQuery<ICreatedSandwich>({
     queryKey: ["sandwich"],
     queryFn: async () => await getSandwich(id as string),
     enabled: !!id,
@@ -47,18 +39,8 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
     resolver: zodResolver(editFormSchema),
   });
 
-  if (isLoading)
-    return (
-      <Card className="flex items-center justify-center w-[600px] h-[400px] opacity-90">
-        <Image
-          src={Sandwich}
-          alt="sandwich loading photo"
-          width={200}
-          height={200}
-          className="animate-pulse"
-        />
-      </Card>
-    );
+  if (isLoading) return <Loader isBackground />;
+
   if (data === undefined) return <h1>no data</h1>;
 
   const {
@@ -80,23 +62,7 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
       <FormProvider {...form}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <FormField
-              control={form.control}
-              name="name"
-              defaultValue={name}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Sandwich name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Write a name for sandwich e.g Sandwich of the day"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <FormInput name="name" defaultValue={name} />
             Sandwich
             <ComboboxSelect<IBreadStuff>
               items={breads}

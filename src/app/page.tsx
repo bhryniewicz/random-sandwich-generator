@@ -1,23 +1,12 @@
 import { SandwichGenerator } from "@/components/SandwichGenerator";
 import { getBreadStuff, getProducts, getSauces } from "@/server/ingredients";
 import { Suspense } from "react";
-import Sandwich from "@/assets/sandwich.png";
-import Image from "next/image";
+import { Loader } from "@/components/Loader";
 
 export default async function Home() {
   return (
     <div className="flex justify-center items-center h-screen w-full">
-      <Suspense
-        fallback={
-          <Image
-            src={Sandwich}
-            alt="sandwich loading photo"
-            width={200}
-            height={200}
-            className="animate-pulse"
-          />
-        }
-      >
+      <Suspense fallback={<Loader />}>
         <ProductsList />
       </Suspense>
     </div>

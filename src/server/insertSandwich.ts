@@ -1,25 +1,19 @@
 import { ICreatedSandwich, ISandwich } from "@/types/sandwich";
 
-export const getSandwich = async (
-  id: string
-): Promise<ICreatedSandwich | undefined> => {
-  try {
-    const response = await fetch(`/api/sandwich/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+export const getSandwich = async (id: string): Promise<ICreatedSandwich> => {
+  const response = await fetch(`/api/sandwich/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-    if (!response.ok) {
-      throw new Error("Failed to get sandwich with this ID");
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (e) {
-    console.error(e);
+  if (!response.ok) {
+    throw new Error("Failed to get sandwich with this ID");
   }
+
+  const data = await response.json();
+  return data;
 };
 
 export const insertSandwich = async (name: string, sandwich: ISandwich) => {

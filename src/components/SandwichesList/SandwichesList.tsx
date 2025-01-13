@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteSandwich, editSandwich } from "@/server/insertSandwich";
+import { deleteSandwich } from "@/server/insertSandwich";
 import { Card } from "../ui/card";
 import { formatDate } from "date-fns";
 import { FC, useState } from "react";
@@ -26,7 +26,7 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
     <div className="container flex justify-center gap-8">
       {sandwichList.map((sandwich) => {
         return (
-          <Card key={sandwich._id} className="p-8">
+          <Card key={sandwich._id} className="p-8 bg-[#fc733d]">
             <p>{sandwich.name}</p>
             <button onClick={() => handleDelete(sandwich._id)}>
               Delete sandwich
