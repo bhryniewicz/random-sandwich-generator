@@ -31,9 +31,6 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
             <button onClick={() => handleDelete(sandwich._id)}>
               Delete sandwich
             </button>
-            <button onClick={() => editSandwich(sandwich)}>
-              Edit sandwich
-            </button>
             <Link href={`/sandwiches/${sandwich._id}/edit`}>Route</Link>
             <p className="text-[10px] text-gray-400">
               {sandwich.editedAt

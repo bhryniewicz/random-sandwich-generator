@@ -20,7 +20,7 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
 }) => {
   const {
     bread,
-    product,
+    ingredients,
     sauce,
     isChoosing,
     handleGenerateSandwich,
@@ -30,7 +30,7 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
 
   const sandwich = {
     bread,
-    product,
+    ingredients,
     sauce,
   };
 
@@ -47,7 +47,7 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
             <ul>
               {isChoosing
                 ? "Choosing products..."
-                : product.map((pro) => {
+                : ingredients.map((pro) => {
                     return <li key={pro._id}>{pro?.name}</li>;
                   })}
             </ul>

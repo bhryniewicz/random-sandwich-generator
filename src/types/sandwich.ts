@@ -2,7 +2,7 @@ import { IBreadStuff, ISauce, ProductBase } from "./ingredients";
 
 export interface ISandwich {
   bread: IBreadStuff;
-  products: ProductBase[];
+  ingredients: ProductBase[];
   sauce: ISauce;
 }
 

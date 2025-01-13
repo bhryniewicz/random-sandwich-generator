@@ -28,6 +28,8 @@ export const insertSandwich = async (name: string, sandwich: ISandwich) => {
     sandwich,
   };
 
+  console.log(newSandwich, "new");
+
   try {
     const response = await fetch("/api/sandwich", {
       method: "POST",

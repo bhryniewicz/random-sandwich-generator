@@ -1,70 +1,21 @@
-"use client";
+import { EditSandwichForm } from "@/components/EditSandwichForm/EditSandwichForm";
+import { getBreadStuff, getProducts, getSauces } from "@/server/ingredients";
+import { Suspense } from "react";
 
-import { editSandwich, getSandwich } from "@/server/insertSandwich";
-import { ICreatedSandwich } from "@/types/sandwich";
-import { useQuery } from "@tanstack/react-query";
-import { redirect, useParams } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { EditSandwichValues } from "./schema";
-
-export default function EditSandwichPage() {
-  const { id } = useParams();
-
-  const { data, isLoading } = useQuery<ICreatedSandwich | undefined>({
-    queryKey: ["sandwich"],
-    queryFn: async () => await getSandwich(id as string),
-    enabled: !!id,
-  });
-
-  const { register, handleSubmit } = useForm<EditSandwichValues>({});
-
-  if (isLoading) return <h1>loading sandwich</h1>;
-
-  if (data === undefined) return <h1>no data</h1>;
-
-  const {
-    name,
-    sandwich: { bread, sauce },
-  } = data;
-
-  const onSubmit = async (changedData: EditSandwichValues) => {
-    const editedSandwich: ICreatedSandwich = {
-      ...data,
-      name: changedData.name,
-      editedAt: new Date(),
-    };
-
-    console.log(editedSandwich);
-    await editSandwich(editedSandwich);
-    redirect("/sandwiches");
-  };
+export default async function EditSandwichPage() {
+  const breads = await getBreadStuff();
+  const sauces = await getSauces();
+  const ingredients = await getProducts();
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          {...register("name")}
-          defaultValue={name}
+    <div className="flex justify-center items-center w-full h-screen gradient">
+      <Suspense fallback={<h1>loading breads</h1>}>
+        <EditSandwichForm
+          breads={breads}
+          sauces={sauces}
+          ingredients={ingredients}
         />
-        Sandwich
-        <p>Bread</p>
-        <p>Products</p>
-        {/* <ul>
-          {product.map((prod) => {
-            return <li key={prod._id}>{prod.name}</li>;
-          })}
-        </ul> */}
-        {/* <input
-          type="text"
-          id="product"
-          defaultValue={products}
-          {...register("sandwich.product")}
-        /> */}
-        <button>Submit</button>
-      </form>
+      </Suspense>
     </div>
   );
 }

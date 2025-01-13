@@ -10,7 +10,7 @@ export const useGenerateSandwich = (
   sauces: ISauce[]
 ) => {
   const [bread, setBread] = useState<IBreadStuff | null>(null);
-  const [product, setProduct] = useState<ProductBase[]>([]);
+  const [ingredients, setIngredients] = useState<ProductBase[]>([]);
   const [sauce, setSauce] = useState<ISauce | null>(null);
   const [isChoosing, setIsChoosing] = useState<boolean>(false);
   const [isGenerated, setIsGenerated] = useState<boolean>(false);
@@ -28,7 +28,7 @@ export const useGenerateSandwich = (
       randomSauce = getRandom<ISauce>(sauces);
 
       setBread(randomBread);
-      setProduct(randomProduct);
+      setIngredients(randomProduct);
       setSauce(randomSauce);
     }, 100);
 
@@ -39,7 +39,7 @@ export const useGenerateSandwich = (
       const finalSauce = getRandom<ISauce>(sauces);
 
       setBread(finalBread);
-      setProduct(finalProducts);
+      setIngredients(finalProducts);
       setSauce(finalSauce);
       setIsChoosing(false);
       setIsGenerated(true);
@@ -48,7 +48,7 @@ export const useGenerateSandwich = (
 
   const resetSandwichGeneration = () => {
     setBread(null);
-    setProduct([]);
+    setIngredients([]);
     setSauce(null);
     setIsGenerated(false);
   };
@@ -56,7 +56,7 @@ export const useGenerateSandwich = (
   return {
     isChoosing,
     bread,
-    product,
+    ingredients,
     sauce,
     handleGenerateSandwich,
     isGenerated,
