@@ -1,5 +1,6 @@
 "use client";
 
+import { Navbar } from "@/components/Navbar";
 import "./globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -13,7 +14,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <QueryClientProvider client={queryClient}>
-        <body>{children}</body>
+        <body>
+          <div className="flex gradient">
+            <Navbar />
+            {children}
+          </div>
+        </body>
       </QueryClientProvider>
     </html>
   );

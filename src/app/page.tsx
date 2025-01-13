@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default async function Home() {
   return (
-    <div className="flex justify-center items-center h-screen w-full gradient">
+    <div className="flex justify-center items-center h-screen w-full">
       <Suspense
         fallback={
           <Image

@@ -21,6 +21,8 @@ import { Card } from "../ui/card";
 import { ComboboxSelect } from "../ComboboxSelect";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import Image from "next/image";
+import Sandwich from "@/assets/sandwich.png";
 
 interface EditSandwichFormProps {
   breads: IBreadStuff[];
@@ -35,7 +37,7 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
 }) => {
   const { id } = useParams();
 
-  const { data, isLoading } = useQuery<ICreatedSandwich | undefined>({
+  const { data, isLoading, isError } = useQuery<ICreatedSandwich | undefined>({
     queryKey: ["sandwich"],
     queryFn: async () => await getSandwich(id as string),
     enabled: !!id,
@@ -45,7 +47,18 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
     resolver: zodResolver(editFormSchema),
   });
 
-  if (isLoading) return <h1>loading sandwich</h1>;
+  if (isLoading)
+    return (
+      <Card className="flex items-center justify-center w-[600px] h-[400px] opacity-90">
+        <Image
+          src={Sandwich}
+          alt="sandwich loading photo"
+          width={200}
+          height={200}
+          className="animate-pulse"
+        />
+      </Card>
+    );
   if (data === undefined) return <h1>no data</h1>;
 
   const {
