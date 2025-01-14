@@ -1,15 +1,27 @@
+import { sandwichSchema } from "@/components/EditSandwichForm/schema";
 import clientPromise from "@/lib/mongodb/mongodb";
 import { ObjectId } from "mongodb";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const { name, sandwich } = await request.json();
+  const body = await request.json();
 
   try {
     const client = await clientPromise;
     const db = client.db("sandwiches");
     const col = await db.collection("created-sandwiches");
+
+    const validation = sandwichSchema.safeParse(body);
+
+    if (!validation.success) {
+      return NextResponse.json(
+        { error: "Invalid sandwich data", details: validation.error.errors },
+        { status: 400 }
+      );
+    }
+
+    const { name, sandwich } = body;
 
     await col.insertOne({
       name,

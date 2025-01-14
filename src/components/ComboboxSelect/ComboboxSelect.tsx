@@ -45,7 +45,7 @@ export const ComboboxSelect = <T extends ProductBase>({
       defaultValue={defaultValue}
       render={({ field }) => (
         <FormItem className="flex flex-col">
-          <FormLabel>Select {category}</FormLabel>
+          <FormLabel className="capitalize">{category}</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
@@ -53,15 +53,23 @@ export const ComboboxSelect = <T extends ProductBase>({
                   variant="outline"
                   role="combobox"
                   className={cn(
-                    "w-full justify-between",
+                    "w-full justify-start",
                     !field.value?.length && "text-muted-foreground"
                   )}
                 >
                   {multiple
-                    ? field.value?.map((item: T) => item.name).join(", ") ||
-                      "Select options"
+                    ? field.value?.length
+                      ? field.value.map((item: T) => (
+                          <div
+                            key={item._id}
+                            className="flex gap-2 bg-[#fa900f] text-white px-2 py-[2px] rounded"
+                          >
+                            {item.name}
+                          </div>
+                        ))
+                      : "Select options"
                     : field.value?.name || "Select an option"}
-                  <ChevronDown />
+                  <ChevronDown className="ml-auto" />
                 </Button>
               </FormControl>
             </PopoverTrigger>
@@ -93,6 +101,12 @@ export const ComboboxSelect = <T extends ProductBase>({
                               field.onChange(item);
                             }
                           }}
+                          className={cn(
+                            isSelected && multiple
+                              ? "text-white bg-[#fa900f]"
+                              : "",
+                            "cursor-pointer"
+                          )}
                         >
                           {item.name}
                           <Check

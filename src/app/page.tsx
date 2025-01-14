@@ -5,7 +5,7 @@ import { Loader } from "@/components/Loader";
 
 export default async function Home() {
   return (
-    <div className="flex justify-center items-center h-screen w-full">
+    <div className="flex items-center h-screen w-[50%]">
       <Suspense fallback={<Loader />}>
         <ProductsList />
       </Suspense>

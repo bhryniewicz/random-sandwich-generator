@@ -18,3 +18,9 @@
   background-size: 37px 37px;
   background-repeat: repeat;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

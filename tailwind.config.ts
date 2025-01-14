@@ -9,6 +9,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-roboto)"],
+        luckiest: ["var(--font-luckiest)"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -19,7 +23,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
-        'custom-pattern': `
+        "custom-pattern": `
           linear-gradient(135deg, #faab5c 25%, transparent 25%), 
           linear-gradient(225deg, #faab5c 25%, transparent 25%), 
           linear-gradient(45deg, #faab5c 25%, transparent 25%), 

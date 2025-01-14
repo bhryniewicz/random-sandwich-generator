@@ -17,6 +17,7 @@ export const getSandwich = async (id: string): Promise<ICreatedSandwich> => {
 };
 
 export const insertSandwich = async (name: string, sandwich: ISandwich) => {
+    
   const newSandwich = {
     name,
     sandwich,
