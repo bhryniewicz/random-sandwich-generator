@@ -37,12 +37,13 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
   return (
     <div className="flex flex-col">
       <div className="flex flex-col">
-        <h1 className="font-luckiest text-lg text-[#471a08]">
-          Generate the finest sandwich
-        </h1>
+        <h1 className="font-luckiest text-lg "></h1>
         <Card className="p-16 w-[600px] border-4 border-[#471a08]">
           <CardHeader>
-            <CardTitle>Your randomly generated sandwich</CardTitle>
+            <CardTitle className="text-[#471a08] text-center">
+              {" "}
+              Generate the finest sandwich
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <p>Bread: {bread?.name}</p>

@@ -16,6 +16,7 @@ import { Button } from "../ui/button";
 import { FormInput } from "../FormInput";
 import { Loader } from "../Loader";
 import { Separator } from "../ui/separator";
+import { FormContainer } from "../FormContainer";
 
 interface EditSandwichFormProps {
   breads: IBreadStuff[];
@@ -31,9 +32,9 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
   const { id } = useParams();
 
   const { data, isLoading } = useQuery<ICreatedSandwich>({
-    queryKey: ["sandwich"],
-    queryFn: async () => await getSandwich(id as string),
-    enabled: !!id,
+    queryKey: ["sandwich", id],
+    queryFn: () => getSandwich(id as string),
+    staleTime: 1000 * 60 * 5,
   });
 
   const form = useForm<EditSandwichValues>({
@@ -58,59 +59,60 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
     await editSandwich(editedSandwich);
   };
 
+  //list sandwhiches refactor
+  //ogarnac tantascka mocniej
+  //page dla sandwicha
+  //filtry na kanapke
+  //ogranac HOCa zbey bylo git
+  //wymyslic jak ma wygladac generowanie i jak pokazuejmy wynik
+
   return (
-    <div className="flex flex-col">
-      <h1 className="font-luckiest text-lg text-[#471a08]">
-        Edit your sandwich
-      </h1>
-      <Card className="p-16 w-[600px] border-4 border-[#471a08]">
-        <FormProvider {...form}>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col gap-4"
+    <FormContainer title={"Edit your sandwich"}>
+      <FormProvider {...form}>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-4"
+          >
+            <div>
+              <h4 className="font-luckiest text-lg text-[#471a08]">About</h4>
+              <Separator />
+            </div>
+            <FormInput name="name" defaultValue={name} />
+            <FormLabel>
+              <h4 className="font-luckiest text-lg text-[#471a08]">Sandwich</h4>
+              <Separator />
+            </FormLabel>
+            <ComboboxSelect<IBreadStuff>
+              items={breads}
+              defaultValue={bread}
+              name="sandwich.bread"
+              category="bread"
+            />
+            <ComboboxSelect<ISauce>
+              items={sauces}
+              defaultValue={sauce}
+              name="sandwich.sauce"
+              category="sauce"
+            />
+            <ComboboxSelect<ProductBase>
+              items={serverIngredients}
+              defaultValue={ingredients}
+              name="sandwich.ingredients"
+              category="ingredients"
+              multiple
+            />
+            <Button
+              variant={"default"}
+              type="submit"
+              className="bg-[#fa900f] tracking-widest mt-4"
+              disabled={form.formState.isSubmitting}
             >
-              <div>
-                <h4 className="font-luckiest text-lg text-[#471a08]">About</h4>
-                <Separator />
-              </div>
-              <FormInput name="name" defaultValue={name} />
-              <FormLabel>
-                <h4 className="font-luckiest text-lg text-[#471a08]">
-                  Sandwich
-                </h4>
-                <Separator />
-              </FormLabel>
-              <ComboboxSelect<IBreadStuff>
-                items={breads}
-                defaultValue={bread}
-                name="sandwich.bread"
-                category="bread"
-              />
-              <ComboboxSelect<ISauce>
-                items={sauces}
-                defaultValue={sauce}
-                name="sandwich.sauce"
-                category="sauce"
-              />
-              <ComboboxSelect<ProductBase>
-                items={serverIngredients}
-                defaultValue={ingredients}
-                name="sandwich.ingredients"
-                category="ingredients"
-                multiple
-              />
-              <Button
-                variant={"default"}
-                type="submit"
-                className="bg-[#fa900f] tracking-widest"
-              >
-                Submit
-              </Button>
-            </form>
-          </Form>
-        </FormProvider>
-      </Card>
-    </div>
+              {form.formState.isSubmitting ? "Submitting..." : "Submit"}
+            </Button>
+          </form>
+        </Form>
+      </FormProvider>
+    </FormContainer>
   );
 };

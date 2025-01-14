@@ -97,8 +97,10 @@ export const ComboboxSelect = <T extends ProductBase>({
                                   )
                                 : [...currentValue, item];
                               field.onChange(updatedValue);
+                              form.trigger(name);
                             } else {
                               field.onChange(item);
+                              form.trigger(name);
                             }
                           }}
                           className={cn(
