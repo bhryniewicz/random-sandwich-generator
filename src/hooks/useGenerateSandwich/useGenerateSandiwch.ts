@@ -3,61 +3,66 @@
 import { useState } from "react";
 import { getRandom, getRandomProducts } from "./utils";
 import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
+import { ISandwich } from "@/types/sandwich";
+
+const messages = [
+  "Generating",
+  "Cutting bread",
+  "Slicing ingredients",
+  "Adding sauce",
+];
 
 export const useGenerateSandwich = (
   products: ProductBase[],
   breadStuff: IBreadStuff[],
   sauces: ISauce[]
 ) => {
-  const [bread, setBread] = useState<IBreadStuff | null>(null);
-  const [ingredients, setIngredients] = useState<ProductBase[]>([]);
-  const [sauce, setSauce] = useState<ISauce | null>(null);
-  const [isChoosing, setIsChoosing] = useState<boolean>(false);
+  const [sandwich, setSandwich] = useState<ISandwich | null>(null);
+  const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [isGenerated, setIsGenerated] = useState<boolean>(false);
+  const [currentMessage, setCurrentMessage] = useState(messages[0]);
+
+  let currentMessageIndex = 0;
 
   const handleGenerateSandwich = () => {
-    setIsChoosing(true);
-    let randomBread;
-    let randomProduct;
-    let randomSauce;
+    setIsGenerating(true);
     resetSandwichGeneration();
 
     const interval = setInterval(() => {
-      randomBread = getRandom<IBreadStuff>(breadStuff);
-      randomProduct = getRandomProducts<ProductBase>(products);
-      randomSauce = getRandom<ISauce>(sauces);
-
-      setBread(randomBread);
-      setIngredients(randomProduct);
-      setSauce(randomSauce);
-    }, 100);
+      currentMessageIndex = ++currentMessageIndex % messages.length;
+      setCurrentMessage(messages[currentMessageIndex]);
+    }, 1000);
 
     setTimeout(() => {
       clearInterval(interval);
-      const finalBread = getRandom<IBreadStuff>(breadStuff);
-      const finalProducts = getRandomProducts<ProductBase>(products);
-      const finalSauce = getRandom<ISauce>(sauces);
+      const bread = getRandom<IBreadStuff>(breadStuff);
+      const ingredients = getRandomProducts<ProductBase>(products);
+      const sauce = getRandom<ISauce>(sauces);
 
-      setBread(finalBread);
-      setIngredients(finalProducts);
-      setSauce(finalSauce);
-      setIsChoosing(false);
+      const generatedSandwich = {
+        bread,
+        ingredients,
+        sauce,
+      };
+
+      if (generatedSandwich === null) return;
+
+      setSandwich(generatedSandwich);
+
+      setIsGenerating(false);
       setIsGenerated(true);
-    }, 2000);
+    }, 4000);
   };
 
   const resetSandwichGeneration = () => {
-    setBread(null);
-    setIngredients([]);
-    setSauce(null);
+    setSandwich(null);
     setIsGenerated(false);
   };
 
   return {
-    isChoosing,
-    bread,
-    ingredients,
-    sauce,
+    currentMessage,
+    isGenerating,
+    sandwich,
     handleGenerateSandwich,
     isGenerated,
     resetSandwichGeneration,

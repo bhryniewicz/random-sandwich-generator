@@ -16,8 +16,6 @@ interface FormInputProps {
 export const FormInput: FC<FormInputProps> = ({ name, defaultValue }) => {
   const form = useFormContext();
 
-  console.log(form, "co tu jest");
-
   return (
     <FormField
       control={form.control}

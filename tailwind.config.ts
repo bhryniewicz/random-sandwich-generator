@@ -35,5 +35,3 @@ export default {
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
 
-
-//bg-[url('/assets/sandwich.png')] w-[800px] h-[800px] bg-cover bg-center
