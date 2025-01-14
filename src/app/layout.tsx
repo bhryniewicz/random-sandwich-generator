@@ -15,7 +15,7 @@ const luckiest_guy = Luckiest_Guy({
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["300", "400", "500", "700"],
   display: "swap",
   variable: "--font-roboto",
 });

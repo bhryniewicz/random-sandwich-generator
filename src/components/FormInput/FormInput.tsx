@@ -11,10 +11,12 @@ import { FC } from "react";
 
 interface FormInputProps {
   name: string;
-  defaultValue: string | number;
+  defaultValue?: string | number;
 }
 export const FormInput: FC<FormInputProps> = ({ name, defaultValue }) => {
   const form = useFormContext();
+
+  console.log(form, "co tu jest");
 
   return (
     <FormField

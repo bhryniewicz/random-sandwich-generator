@@ -5,7 +5,7 @@ import { Loader } from "@/components/Loader";
 
 export default async function Home() {
   return (
-    <div className="flex items-center h-screen w-[50%]">
+    <div className="flex items-center justify-center h-screen w-full">
       <Suspense fallback={<Loader />}>
         <ProductsList />
       </Suspense>
@@ -25,12 +25,10 @@ const ProductsList = async () => {
   }
 
   return (
-    <div>
-      <SandwichGenerator
-        products={products}
-        breadStuff={breadStuff}
-        sauces={sauces}
-      />
-    </div>
+    <SandwichGenerator
+      products={products}
+      breadStuff={breadStuff}
+      sauces={sauces}
+    />
   );
 };
