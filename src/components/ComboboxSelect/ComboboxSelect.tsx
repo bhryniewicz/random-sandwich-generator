@@ -45,7 +45,7 @@ export const ComboboxSelect = <T extends ProductBase>({
       defaultValue={defaultValue}
       render={({ field }) => (
         <FormItem className="flex flex-col">
-          <FormLabel className="capitalize">{category}</FormLabel>
+          <FormLabel className="capitalize">{category}:</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>

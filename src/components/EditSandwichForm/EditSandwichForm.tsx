@@ -10,7 +10,6 @@ import { EditSandwichValues, sandwichSchema } from "./schema";
 import { Form, FormLabel } from "../ui/form";
 import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
 import { FC } from "react";
-import { Card } from "../ui/card";
 import { ComboboxSelect } from "../ComboboxSelect";
 import { Button } from "../ui/button";
 import { FormInput } from "../FormInput";
@@ -77,7 +76,11 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
               <h4 className="font-luckiest text-lg text-[#471a08]">About</h4>
               <Separator />
             </div>
-            <FormInput name="name" defaultValue={name} />
+            <FormInput
+              name="name"
+              defaultValue={name}
+              label={"Sandwich name"}
+            />
             <FormLabel>
               <h4 className="font-luckiest text-lg text-[#471a08]">Sandwich</h4>
               <Separator />

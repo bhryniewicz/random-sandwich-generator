@@ -11,9 +11,14 @@ import { FC } from "react";
 
 interface FormInputProps {
   name: string;
+  label: string;
   defaultValue?: string | number;
 }
-export const FormInput: FC<FormInputProps> = ({ name, defaultValue }) => {
+export const FormInput: FC<FormInputProps> = ({
+  name,
+  label,
+  defaultValue,
+}) => {
   const form = useFormContext();
 
   return (
@@ -23,7 +28,7 @@ export const FormInput: FC<FormInputProps> = ({ name, defaultValue }) => {
       defaultValue={defaultValue}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Sandwich name</FormLabel>
+          <FormLabel>{label}:</FormLabel>
           <FormControl>
             <Input
               placeholder="Write a name for sandwich e.g Sandwich of the day"

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
-import { Card, CardDescription, CardTitle } from "../ui/card";
+import { Card, CardTitle } from "../ui/card";
 import { Form } from "../ui/form";
 import { insertSandwich } from "@/server/insertSandwich";
 import { ISandwich } from "@/types/sandwich";
@@ -44,20 +44,24 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
         </div>
         <ul className="font-luckiest">
           <li>
-            Bread: <span className="text-[#737373]">{bread.name}</span>
+            Bread: <span className="text-[#fa900f] pl-2">{bread.name}</span>
           </li>
           <li>
-            Ingredients:
-            {ingredients.map((ing) => {
-              return (
-                <p key={ing._id} className="text-gray-600 pl-2">
-                  - {ing.name}
-                </p>
-              );
-            })}
+            Ingredients:{" "}
+            {ingredients.length > 1 ? (
+              ingredients.map((ing) => {
+                return (
+                  <p key={ing._id} className="text-[#fa900f] pl-2">
+                    - {ing.name}
+                  </p>
+                );
+              })
+            ) : (
+              <span className="text-gray-600 pl-2">{ingredients[0].name}</span>
+            )}
           </li>
           <li>
-            Sauce: <span className="text-gray-600">{sauce.name}</span>
+            Sauce: <span className="text-gray-600 pl-2">{sauce.name}</span>
           </li>
         </ul>
         <CardTitle>
@@ -66,18 +70,18 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
           </h4>
           <Separator />
         </CardTitle>
-        <CardDescription>
+        <p className="text-sm font-medium text-gray-600">
           Saving option gives a possility to check later on what sandwich you ve
           got but also editing and more exiciting stuff. Add name to remember
           what was that amazing sandwich. You can write a date or some weird
           name.
-        </CardDescription>
+        </p>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-6"
           >
-            <FormInput name={"name"} />
+            <FormInput name={"name"} label={"Sandwich name"} />
             <div className="flex gap-2">
               <Button
                 variant={"default"}
