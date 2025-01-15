@@ -85,28 +85,31 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
             className="flex flex-col gap-6"
           >
             <FormInput name={"name"} label={"Sandwich name"} />
-            <div className="flex gap-2">
-              <Button
-                variant={"default"}
-                type="submit"
-                className="bg-[#fa900f]"
-              >
+            <div className="flex flex-col gap-4">
+              <Button variant={"default"} type="submit" className="mt-4">
                 Save
               </Button>
-              <Button
-                variant={"secondary"}
-                type="button"
-                onClick={resetSandwichGeneration}
-              >
-                Cancel
-              </Button>
-              <Button
-                variant={"secondary"}
-                type="button"
-                onClick={generateSandwich}
-              >
-                Generate again
-              </Button>
+              <div className="flex items-center gap-4">
+                <Separator className="flex-1" />
+                <span className="font-luckiest text-[#471a08]">or</span>
+                <Separator className="flex-1" />
+              </div>
+              <div className="flex gap-4">
+                <Button
+                  variant={"secondary"}
+                  type="button"
+                  onClick={generateSandwich}
+                >
+                  Generate again
+                </Button>
+                <Button
+                  variant={"secondary"}
+                  type="button"
+                  onClick={resetSandwichGeneration}
+                >
+                  Cancel
+                </Button>
+              </div>
             </div>
           </form>
         </Form>

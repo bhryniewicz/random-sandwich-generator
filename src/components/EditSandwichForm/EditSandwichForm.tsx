@@ -106,7 +106,7 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
             <Button
               variant={"default"}
               type="submit"
-              className="bg-[#fa900f] tracking-widest mt-4"
+              className="tracking-widest mt-4"
               disabled={form.formState.isSubmitting}
             >
               {form.formState.isSubmitting ? "Submitting..." : "Submit"}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { useGenerateSandwich } from "@/hooks/useGenerateSandwich/useGenerateSandiwch";
 import { Button } from "../ui/button";
 import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
@@ -8,6 +8,7 @@ import { FC } from "react";
 import { AddSandwichForm } from "../AddSandwichForm";
 import { SandwichFilters } from "../SandwichFilters";
 import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
+import { Sandwich } from "lucide-react";
 
 interface SandwichGeneratorProps {
   products: ProductBase[];
@@ -39,14 +40,21 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
             Generate the finest sandwich
           </h1>
           <Card className="p-16 w-[600px] border-4 border-[#471a08]">
-            <SandwichFilters breads={breadStuff}/>
+            <SandwichFilters breads={breadStuff} />
             <Button
-              className="flex justify-center items-center w-full py-12 bg-[#fa8c07] text-[40px] font-luckiest"
+              className="flex justify-center items-center w-full py-12 bg-[#f36805] text-[40px] font-luckiest"
               variant={"default"}
               onClick={handleGenerateSandwich}
             >
+              <Sandwich
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  marginBottom: "0.5rem",
+                }}
+              />
               Generate
-            </Button>{" "}
+            </Button>
           </Card>
         </div>
       )}
