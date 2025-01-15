@@ -45,7 +45,7 @@ export const ComboboxSelect = <T extends ProductBase>({
       defaultValue={defaultValue}
       render={({ field }) => (
         <FormItem className="flex flex-col">
-          <FormLabel className="capitalize">{category}:</FormLabel>
+          <FormLabel className="capitalize mb-2">{category}:</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
@@ -53,7 +53,7 @@ export const ComboboxSelect = <T extends ProductBase>({
                   variant="outline"
                   role="combobox"
                   className={cn(
-                    "w-full justify-start",
+                    "w-full justify-star",
                     !field.value?.length && "text-muted-foreground"
                   )}
                 >

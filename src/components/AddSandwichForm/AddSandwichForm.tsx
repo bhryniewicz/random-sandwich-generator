@@ -11,11 +11,13 @@ import { Separator } from "../ui/separator";
 interface AddSandwichFormProps {
   sandwich: ISandwich;
   resetSandwichGeneration: () => void;
+  generateSandwich: () => void;
 }
 
 export const AddSandwichForm: FC<AddSandwichFormProps> = ({
   sandwich,
   resetSandwichGeneration,
+  generateSandwich,
 }) => {
   const form = useForm({
     defaultValues: {
@@ -29,8 +31,6 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
   };
 
   const { bread, ingredients, sauce } = sandwich;
-
-  console.log(Array.isArray(ingredients));
 
   return (
     <div className="flex flex-col">
@@ -57,11 +57,11 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
                 );
               })
             ) : (
-              <span className="text-gray-600 pl-2">{ingredients[0].name}</span>
+              <span className="text-[#fa900f] pl-2">{ingredients[0].name}</span>
             )}
           </li>
           <li>
-            Sauce: <span className="text-gray-600 pl-2">{sauce.name}</span>
+            Sauce: <span className="text-[#fa900f] pl-2">{sauce.name}</span>
           </li>
         </ul>
         <CardTitle>
@@ -70,7 +70,7 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
           </h4>
           <Separator />
         </CardTitle>
-        <p className="text-sm font-medium text-gray-600">
+        <p className="text-sm font-bold text-gray-600">
           Saving option gives a possility to check later on what sandwich you ve
           got but also editing and more exiciting stuff. Add name to remember
           what was that amazing sandwich. You can write a date or some weird
@@ -94,8 +94,15 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
                 variant={"secondary"}
                 type="button"
                 onClick={resetSandwichGeneration}
-              >
+            >
                 Cancel
+              </Button>
+              <Button
+                variant={"secondary"}
+                type="button"
+                onClick={generateSandwich}
+              >
+                Generate again
               </Button>
             </div>
           </form>

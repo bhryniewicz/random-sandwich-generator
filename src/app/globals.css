@@ -24,3 +24,8 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}

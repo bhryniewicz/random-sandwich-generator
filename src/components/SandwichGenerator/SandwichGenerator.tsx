@@ -54,7 +54,7 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
             <p>Sauce: {sauce && `${sauce.name} - ${sauce.type}`}</p>
           </CardContent> */}
             <Button
-              className="flex justify-center items-center w-full py-12 bg-[#fa900f] text-[40px] font-luckiest"
+              className="flex justify-center items-center w-full py-12 bg-[#fa8c07] text-[40px] font-luckiest"
               variant={"default"}
               onClick={handleGenerateSandwich}
             >
@@ -82,6 +82,7 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
         <AddSandwichForm
           sandwich={sandwich}
           resetSandwichGeneration={resetSandwichGeneration}
+          generateSandwich={handleGenerateSandwich}
         />
       )}
     </>

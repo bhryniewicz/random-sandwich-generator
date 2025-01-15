@@ -13,11 +13,34 @@ export const Navbar = () => {
           Generator
         </h1>
       </div>
-      <Link href="/">Generate</Link>
-      <Link href="/sandwiches">My list</Link>
-      <Link href="/">The Best of</Link>
-      <Link href="/">Compose</Link>
-      <Link href="/" className="mb-auto">
+      <Link
+        href="/"
+        className="hover:text-[#8a4b00] transition-colors duration-300"
+      >
+        Generate
+      </Link>
+      <Link
+        href="/sandwiches"
+        className="hover:text-[#cc760e] hover:underline transition-colors duration-300"
+      >
+        My list
+      </Link>
+      <Link
+        href="/"
+        className="hover:text-[#fa900f] hover:underline transition-colors duration-300"
+      >
+        The Best of
+      </Link>
+      <Link
+        href="/"
+        className="hover:text-[#fa900f] hover:underline transition-colors duration-300"
+      >
+        Compose
+      </Link>
+      <Link
+        href="/"
+        className="mb-auto hover:text-[#fa900f] hover:underline transition-colors duration-300"
+      >
         Articles
       </Link>
     </div>
