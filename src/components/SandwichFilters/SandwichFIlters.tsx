@@ -1,12 +1,14 @@
 import { Checkbox } from "../ui/checkbox";
 import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
 import { Separator } from "../ui/separator";
+import { ComboboxSelect } from "../ComboboxSelect";
 
-export const SandwichFilters = () => {
+
+export const SandwichFilters = ({breads}) => {
   const { sauceFilter, setSauceFilter } = useSandwichFiltersContext();
 
   return (
-    <div className="flex flex-col gap-4 py-8">
+    <div className="flex flex-col gap-4 py-8 mb-12">
       <div>
         <h4 className="font-luckiest text-lg text-[#471a08]">Filters</h4>
         <Separator />
@@ -26,6 +28,10 @@ export const SandwichFilters = () => {
           No sauce in sandwich
         </label>
       </div>
+      {/* <ComboboxSelect 
+        items={breads}
+        name
+        /> */}
     </div>
   );
 };

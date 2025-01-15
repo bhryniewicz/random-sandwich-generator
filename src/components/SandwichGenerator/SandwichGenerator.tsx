@@ -34,16 +34,12 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
   return (
     <>
       {!isGenerating && !isGenerated && (
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-between">
           <h1 className="font-luckiest text-lg text-[#471a08]">
             Generate the finest sandwich
           </h1>
           <Card className="p-16 w-[600px] border-4 border-[#471a08]">
-            <CardHeader>
-              <CardTitle className=" text-center"></CardTitle>
-            </CardHeader>
-           
-            <SandwichFilters />
+            <SandwichFilters breads={breadStuff}/>
             <Button
               className="flex justify-center items-center w-full py-12 bg-[#fa8c07] text-[40px] font-luckiest"
               variant={"default"}
@@ -51,13 +47,6 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
             >
               Generate
             </Button>{" "}
-            <Button
-              className="flex justify-center items-center w-full py-12 bg-[#f36805] text-[40px] font-luckiest"
-              variant={"default"}
-              onClick={handleGenerateSandwich}
-            >
-              Generate
-            </Button>
           </Card>
         </div>
       )}

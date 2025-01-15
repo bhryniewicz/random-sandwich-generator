@@ -61,8 +61,7 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
   //list sandwhiches refactor
   //ogarnac tantascka mocniej
   //page dla sandwicha
-  //filtry na kanapke
-  //ogranac HOCa zbey bylo git
+  //filtry na kanapke - zrobiont basic stuff
 
   return (
     <FormContainer title={"Edit your sandwich"}>

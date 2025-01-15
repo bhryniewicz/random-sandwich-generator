@@ -2,7 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 import Sandwich from "@/assets/sandwich.png";
 
-const routes = ["generate", "sandwiches", "1", "2", "3"];
+const routes = [
+  {
+    href: "/",
+    label: "Generate",
+  },
+  {
+    href: "sandwiches",
+    label: "Sandwiches",
+  },
+  {
+    href: "/",
+    label: "My list",
+  },
+  {
+    href: "/",
+    label: "The best of",
+  },
+  {
+    href: "/",
+    label: "Compose",
+  },
+];
 
 export const Navbar = () => {
   return (
@@ -17,20 +38,22 @@ export const Navbar = () => {
       </div>
       <div className="flex flex-col">
         {routes.map((route) => {
-          return <LinkItem href={route} key={route} />;
+          return (
+            <LinkItem href={route.href} label={route.label} key={route.label} />
+          );
         })}
       </div>
     </div>
   );
 };
 
-const LinkItem = ({ href }: { href: string }) => {
+const LinkItem = ({ href, label }: { href: string; label: string }) => {
   return (
     <Link
       href={`/${href}`}
       className="mb-auto hover:text-[#f36805] hover:underline transition-colors duration-300"
     >
-      {href}
+      {label}
     </Link>
   );
 };
