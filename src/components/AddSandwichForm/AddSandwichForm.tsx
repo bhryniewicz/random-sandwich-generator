@@ -61,7 +61,10 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
             )}
           </li>
           <li>
-            Sauce: <span className="text-[#fa900f] pl-2">{sauce.name}</span>
+            Sauce:{" "}
+            <span className="text-[#fa900f] pl-2">
+              {sauce?.name ? sauce.name : "----"}
+            </span>
           </li>
         </ul>
         <CardTitle>
@@ -94,7 +97,7 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
                 variant={"secondary"}
                 type="button"
                 onClick={resetSandwichGeneration}
-            >
+              >
                 Cancel
               </Button>
               <Button

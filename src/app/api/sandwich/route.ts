@@ -80,8 +80,6 @@ export async function PUT(request: NextRequest) {
 
     const { _id, ...updatedFields } = sandwich;
 
-    console.log(sandwich, "co to jest");
-
     const filter = { _id: new ObjectId(_id) };
 
     const result = await col.updateOne(filter, {

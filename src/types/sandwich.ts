@@ -3,7 +3,7 @@ import { IBreadStuff, ISauce, ProductBase } from "./ingredients";
 export interface ISandwich {
   bread: IBreadStuff;
   ingredients: ProductBase[];
-  sauce: ISauce;
+  sauce: ISauce | null;
 }
 
 export interface ICreatedSandwich extends ISandwich {

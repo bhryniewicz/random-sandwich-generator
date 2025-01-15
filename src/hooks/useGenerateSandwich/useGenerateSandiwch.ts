@@ -15,7 +15,8 @@ const messages = [
 export const useGenerateSandwich = (
   products: ProductBase[],
   breadStuff: IBreadStuff[],
-  sauces: ISauce[]
+  sauces: ISauce[],
+  sauceFilter: boolean
 ) => {
   const [sandwich, setSandwich] = useState<ISandwich | null>(null);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
@@ -37,7 +38,7 @@ export const useGenerateSandwich = (
       clearInterval(interval);
       const bread = getRandom<IBreadStuff>(breadStuff);
       const ingredients = getRandomProducts<ProductBase>(products);
-      const sauce = getRandom<ISauce>(sauces);
+      const sauce = sauceFilter ? getRandom<ISauce>(sauces) : null;
 
       const generatedSandwich = {
         bread,

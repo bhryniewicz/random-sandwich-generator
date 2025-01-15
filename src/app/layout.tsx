@@ -5,6 +5,7 @@ import "./globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Luckiest_Guy, Roboto } from "next/font/google";
+import { SandwichFiltersProvider } from "@/contexts/sandwichFIltersContext";
 
 const luckiest_guy = Luckiest_Guy({
   subsets: ["latin"],
@@ -31,10 +32,12 @@ export default function RootLayout({
     <html lang="en" className={`${luckiest_guy.variable} ${roboto.variable}`}>
       <body>
         <QueryClientProvider client={queryClient}>
-          <div className="flex gradient">
-            <Navbar />
-            {children}
-          </div>
+          <SandwichFiltersProvider>
+            <div className="flex gradient">
+              <Navbar />
+              {children}
+            </div>
+          </SandwichFiltersProvider>
           <ReactQueryDevtools />
         </QueryClientProvider>
       </body>

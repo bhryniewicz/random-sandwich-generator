@@ -24,7 +24,7 @@ import { ProductBase } from "@/types/ingredients";
 interface ComboboxSelectProps<T> {
   name: string;
   items: T[];
-  defaultValue: T | T[];
+  defaultValue: T | T[] | null;
   category: string;
   multiple?: boolean;
 }

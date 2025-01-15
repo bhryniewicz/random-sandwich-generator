@@ -17,13 +17,10 @@ export const getSandwich = async (id: string): Promise<ICreatedSandwich> => {
 };
 
 export const insertSandwich = async (name: string, sandwich: ISandwich) => {
-    
   const newSandwich = {
     name,
     sandwich,
   };
-
-  console.log(newSandwich, "new");
 
   try {
     const response = await fetch("/api/sandwich", {

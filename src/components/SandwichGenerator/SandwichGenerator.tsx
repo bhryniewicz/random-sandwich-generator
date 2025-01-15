@@ -6,6 +6,8 @@ import { Button } from "../ui/button";
 import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
 import { FC } from "react";
 import { AddSandwichForm } from "../AddSandwichForm";
+import { SandwichFilters } from "../SandwichFilters";
+import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
 
 interface SandwichGeneratorProps {
   products: ProductBase[];
@@ -18,6 +20,8 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
   breadStuff,
   sauces,
 }) => {
+  const { sauceFilter } = useSandwichFiltersContext();
+
   const {
     sandwich,
     isGenerating,
@@ -25,7 +29,7 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
     isGenerated,
     resetSandwichGeneration,
     currentMessage,
-  } = useGenerateSandwich(products, breadStuff, sauces);
+  } = useGenerateSandwich(products, breadStuff, sauces, sauceFilter);
 
   return (
     <>
@@ -38,23 +42,17 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
             <CardHeader>
               <CardTitle className=" text-center"></CardTitle>
             </CardHeader>
-            <h1>Filters</h1>
-            {/* <CardContent>
-            <p>Bread: {bread?.name}</p>
-            <div>
-              Products:{" "}
-              <ul>
-                {isChoosing
-                  ? "Choosing products..."
-                  : ingredients.map((pro) => {
-                      return <li key={pro._id}>{pro?.name}</li>;
-                    })}
-              </ul>
-            </div>
-            <p>Sauce: {sauce && `${sauce.name} - ${sauce.type}`}</p>
-          </CardContent> */}
+           
+            <SandwichFilters />
             <Button
               className="flex justify-center items-center w-full py-12 bg-[#fa8c07] text-[40px] font-luckiest"
+              variant={"default"}
+              onClick={handleGenerateSandwich}
+            >
+              Generate
+            </Button>{" "}
+            <Button
+              className="flex justify-center items-center w-full py-12 bg-[#f36805] text-[40px] font-luckiest"
               variant={"default"}
               onClick={handleGenerateSandwich}
             >

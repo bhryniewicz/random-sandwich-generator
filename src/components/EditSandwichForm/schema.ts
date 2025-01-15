@@ -33,7 +33,7 @@ export const sandwichSchema = z.object({
         name: z.string(),
         type: sauceType,
       })
-      .required(),
+      .nullable(),
   }),
 });
 

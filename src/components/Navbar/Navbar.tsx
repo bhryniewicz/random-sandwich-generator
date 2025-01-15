@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Sandwich from "@/assets/sandwich.png";
 
+const routes = ["generate", "sandwiches", "1", "2", "3"];
+
 export const Navbar = () => {
   return (
     <div className="flex flex-col justify-center uppercase text-[80px] text-[#471a08] w-[40%] px-8 py-16 font-luckiest">
@@ -13,36 +15,22 @@ export const Navbar = () => {
           Generator
         </h1>
       </div>
-      <Link
-        href="/"
-        className="hover:text-[#8a4b00] transition-colors duration-300"
-      >
-        Generate
-      </Link>
-      <Link
-        href="/sandwiches"
-        className="hover:text-[#cc760e] hover:underline transition-colors duration-300"
-      >
-        My list
-      </Link>
-      <Link
-        href="/"
-        className="hover:text-[#fa900f] hover:underline transition-colors duration-300"
-      >
-        The Best of
-      </Link>
-      <Link
-        href="/"
-        className="hover:text-[#fa900f] hover:underline transition-colors duration-300"
-      >
-        Compose
-      </Link>
-      <Link
-        href="/"
-        className="mb-auto hover:text-[#fa900f] hover:underline transition-colors duration-300"
-      >
-        Articles
-      </Link>
+      <div className="flex flex-col">
+        {routes.map((route) => {
+          return <LinkItem href={route} key={route} />;
+        })}
+      </div>
     </div>
+  );
+};
+
+const LinkItem = ({ href }: { href: string }) => {
+  return (
+    <Link
+      href={`/${href}`}
+      className="mb-auto hover:text-[#f36805] hover:underline transition-colors duration-300"
+    >
+      {href}
+    </Link>
   );
 };
