@@ -3,8 +3,7 @@ import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
 import { Separator } from "../ui/separator";
 import { ComboboxSelect } from "../ComboboxSelect";
 
-
-export const SandwichFilters = ({breads}) => {
+export const SandwichFilters = ({ breads }) => {
   const { sauceFilter, setSauceFilter } = useSandwichFiltersContext();
 
   return (
@@ -14,9 +13,9 @@ export const SandwichFilters = ({breads}) => {
         <Separator />
       </div>
       <p className="text-sm font-bold text-gray-600">
-        Saving option gives a possility to check later on what sandwich you ve
-        got but also editing and more exiciting stuff. Add name to remember what
-        was that amazing sandwich. You can write a date or some weird name.
+        Add some filters to your sandwich. Maybe it's randomly generated, but I
+        bet if you are vegetarian, you don't want any meat inside your next
+        meal.
       </p>
       <div className="flex items-center ">
         <Checkbox

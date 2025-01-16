@@ -6,9 +6,7 @@ import { Loader } from "@/components/Loader";
 export default async function Home() {
   return (
     <div className="flex items-center justify-center h-screen w-full">
-      <Suspense fallback={<Loader />}>
-        <ProductsList />
-      </Suspense>
+      <ProductsList />
     </div>
   );
 }

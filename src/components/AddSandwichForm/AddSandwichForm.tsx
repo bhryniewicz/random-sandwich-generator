@@ -7,6 +7,7 @@ import { ISandwich } from "@/types/sandwich";
 import { FC } from "react";
 import { FormInput } from "../FormInput";
 import { Separator } from "../ui/separator";
+import { ArrowDownToLine } from "lucide-react";
 
 interface AddSandwichFormProps {
   sandwich: ISandwich;
@@ -88,6 +89,7 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
             <div className="flex flex-col gap-4">
               <Button variant={"default"} type="submit" className="mt-4">
                 Save
+                <ArrowDownToLine />
               </Button>
               <div className="flex items-center gap-4">
                 <Separator className="flex-1" />

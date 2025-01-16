@@ -8,12 +8,13 @@ import { FC } from "react";
 import { AddSandwichForm } from "../AddSandwichForm";
 import { SandwichFilters } from "../SandwichFilters";
 import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
-import { Sandwich } from "lucide-react";
+import { Sandwich, ArrowDownToLine } from "lucide-react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 interface SandwichGeneratorProps {
   products: ProductBase[];
-  breadStuff: IBreadStuff[];
-  sauces: ISauce[];
+  breadStuff?: IBreadStuff[];
+  sauces?: ISauce[];
 }
 
 export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
@@ -22,6 +23,13 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
   sauces,
 }) => {
   const { sauceFilter } = useSandwichFiltersContext();
+
+  const { data: bread1 } = useSuspenseQuery({
+    queryKey: ["breadStuff"],
+    staleTime: 1000 * 60 * 60,
+  });
+
+  console.log(bread1, "jest w generatorze");
 
   const {
     sandwich,

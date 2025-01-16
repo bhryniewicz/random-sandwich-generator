@@ -2,7 +2,7 @@
 
 import { editSandwich, getSandwich } from "@/server/insertSandwich";
 import { ICreatedSandwich } from "@/types/sandwich";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { notFound, useParams } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,6 +16,7 @@ import { FormInput } from "../FormInput";
 import { Loader } from "../Loader";
 import { Separator } from "../ui/separator";
 import { FormContainer } from "../FormContainer";
+import { getBreadStuff } from "@/server/ingredients";
 
 interface EditSandwichFormProps {
   breads: IBreadStuff[];
@@ -30,6 +31,12 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
 }) => {
   const { id } = useParams();
 
+  const { data: bread1 } = useSuspenseQuery({
+    queryKey: ["breadStuff"],
+    staleTime: 1000 * 60 * 60,
+  });
+
+  console.log(bread1, "to jest w edit sandwich");
   const { data, isLoading } = useQuery<ICreatedSandwich>({
     queryKey: ["sandwich", id],
     queryFn: () => getSandwich(id as string),
@@ -85,7 +92,7 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
               <Separator />
             </FormLabel>
             <ComboboxSelect<IBreadStuff>
-              items={breads}
+              items={bread1}
               defaultValue={bread}
               name="sandwich.bread"
               category="bread"
