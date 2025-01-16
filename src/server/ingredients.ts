@@ -3,7 +3,7 @@ import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
 
 type Collection = "products" | "breadstuff" | "sauces";
 
-const getProductss = async <T>(collection: Collection): Promise<T[]> => {
+const getCollection = async <T>(collection: Collection): Promise<T[]> => {
   try {
     const client = await clientPromise;
     const db = client.db("sandwiches");
@@ -16,11 +16,21 @@ const getProductss = async <T>(collection: Collection): Promise<T[]> => {
   }
 };
 
-export const getProducts = async (): Promise<ProductBase[]> =>
-  getProductss<ProductBase>("products");
+export const getIngredients = async (): Promise<ProductBase[]> =>
+  getCollection<ProductBase>("products");
 
 export const getBreadStuff = async (): Promise<IBreadStuff[]> =>
-  getProductss<IBreadStuff>("breadstuff");
+  getCollection<IBreadStuff>("breadstuff");
 
 export const getSauces = async (): Promise<ISauce[]> =>
-  getProductss<ISauce>("sauces");
+  getCollection<ISauce>("sauces");
+
+export const getProducts = async () => {
+  const [breadStuff, sauces, ingredients] = await Promise.all([
+    getBreadStuff(),
+    getSauces(),
+    getIngredients(),
+  ]);
+
+  return { breadStuff, sauces, ingredients };
+};

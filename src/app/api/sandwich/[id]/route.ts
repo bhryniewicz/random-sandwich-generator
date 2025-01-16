@@ -6,14 +6,14 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const { id } = await params;
+  const sandwichId = (await params).id;
 
   try {
     const client = await clientPromise;
     const db = client.db("sandwiches");
 
     const sandwich = await db.collection("created-sandwiches").findOne({
-      _id: new ObjectId(id),
+      _id: new ObjectId(sandwichId),
     });
 
     if (!sandwich) {

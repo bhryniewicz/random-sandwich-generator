@@ -3,33 +3,13 @@
 import { Card } from "@/components/ui/card";
 import { useGenerateSandwich } from "@/hooks/useGenerateSandwich/useGenerateSandiwch";
 import { Button } from "../ui/button";
-import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
-import { FC } from "react";
 import { AddSandwichForm } from "../AddSandwichForm";
 import { SandwichFilters } from "../SandwichFilters";
 import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
-import { Sandwich, ArrowDownToLine } from "lucide-react";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { Sandwich } from "lucide-react";
 
-interface SandwichGeneratorProps {
-  products: ProductBase[];
-  breadStuff?: IBreadStuff[];
-  sauces?: ISauce[];
-}
-
-export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
-  products,
-  breadStuff,
-  sauces,
-}) => {
+export const SandwichGenerator = () => {
   const { sauceFilter } = useSandwichFiltersContext();
-
-  const { data: bread1 } = useSuspenseQuery({
-    queryKey: ["breadStuff"],
-    staleTime: 1000 * 60 * 60,
-  });
-
-  console.log(bread1, "jest w generatorze");
 
   const {
     sandwich,
@@ -38,7 +18,7 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
     isGenerated,
     resetSandwichGeneration,
     currentMessage,
-  } = useGenerateSandwich(products, breadStuff, sauces, sauceFilter);
+  } = useGenerateSandwich(sauceFilter);
 
   return (
     <>
@@ -48,7 +28,7 @@ export const SandwichGenerator: FC<SandwichGeneratorProps> = ({
             Generate the finest sandwich
           </h1>
           <Card className="p-16 w-[600px] border-4 border-[#471a08]">
-            <SandwichFilters breads={breadStuff} />
+            <SandwichFilters />
             <Button
               className="flex justify-center items-center w-full py-12 bg-[#f36805] text-[40px] font-luckiest"
               variant={"default"}

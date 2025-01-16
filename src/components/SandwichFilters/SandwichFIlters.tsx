@@ -3,7 +3,7 @@ import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
 import { Separator } from "../ui/separator";
 import { ComboboxSelect } from "../ComboboxSelect";
 
-export const SandwichFilters = ({ breads }) => {
+export const SandwichFilters = () => {
   const { sauceFilter, setSauceFilter } = useSandwichFiltersContext();
 
   return (

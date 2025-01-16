@@ -31,7 +31,8 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
             <button onClick={() => handleDelete(sandwich._id)}>
               Delete sandwich
             </button>
-            <Link href={`/sandwiches/${sandwich._id}/edit`}>Route</Link>
+            <Link href={`/sandwiches/${sandwich._id}/edit`}>edit Route</Link>
+            <Link href={`/sandwiches/${sandwich._id}`}>page Route</Link>
             <p className="text-[10px] text-gray-400">
               {sandwich.editedAt
                 ? `Edited at: ${formatDate(

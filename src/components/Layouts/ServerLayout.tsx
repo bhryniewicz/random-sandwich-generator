@@ -3,7 +3,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getBreadStuff } from "@/server/ingredients";
+import { getProducts } from "@/server/ingredients";
 
 export default async function ServerLayout({
   children,
@@ -13,11 +13,8 @@ export default async function ServerLayout({
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ["breadStuff"],
-    queryFn: () => {
-      console.log("server yay");
-      return getBreadStuff();
-    },
+    queryKey: ["products"],
+    queryFn: getProducts,
     staleTime: 1000 * 60 * 60,
   });
 

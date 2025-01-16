@@ -9,35 +9,22 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { EditSandwichValues, sandwichSchema } from "./schema";
 import { Form, FormLabel } from "../ui/form";
 import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
-import { FC } from "react";
 import { ComboboxSelect } from "../ComboboxSelect";
 import { Button } from "../ui/button";
 import { FormInput } from "../FormInput";
 import { Loader } from "../Loader";
 import { Separator } from "../ui/separator";
 import { FormContainer } from "../FormContainer";
-import { getBreadStuff } from "@/server/ingredients";
 
-interface EditSandwichFormProps {
-  breads: IBreadStuff[];
-  sauces: ISauce[];
-  ingredients: ProductBase[];
-}
-
-export const EditSandwichForm: FC<EditSandwichFormProps> = ({
-  breads,
-  sauces,
-  ingredients: serverIngredients,
-}) => {
+export const EditSandwichForm = () => {
   const { id } = useParams();
 
-  const { data: bread1 } = useSuspenseQuery({
-    queryKey: ["breadStuff"],
+  const { data } = useSuspenseQuery({
+    queryKey: ["products"],
     staleTime: 1000 * 60 * 60,
   });
 
-  console.log(bread1, "to jest w edit sandwich");
-  const { data, isLoading } = useQuery<ICreatedSandwich>({
+  const { data: sandwichData, isLoading } = useQuery<ICreatedSandwich>({
     queryKey: ["sandwich", id],
     queryFn: () => getSandwich(id as string),
     staleTime: 1000 * 60 * 5,
@@ -49,26 +36,48 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
 
   if (isLoading) return <Loader isBackground />;
 
-  if (!data) return notFound();
+  if (!sandwichData) return notFound();
 
   const {
     name,
     sandwich: { bread, sauce, ingredients },
-  } = data;
+  } = sandwichData;
+
+  const { breadStuff, sauces, ingredients: serverIngredients } = data;
 
   const onSubmit = async (changedData: EditSandwichValues) => {
     const editedSandwich: ICreatedSandwich = {
-      ...data,
+      ...sandwichData,
       ...changedData,
       editedAt: new Date(),
     };
     await editSandwich(editedSandwich);
   };
 
+  //pomyslec nad landing page
+  //refactor forma z componentu
+  //parsowanie w add sandwich form
+  //kolory do zmiennych
+  //local storage / cookies zapis preferencji
+  //ogarnac zmienne srodowiskowe
+  //zobaczyc jakies api z jedzeniem????
   //list sandwhiches refactor
-  //ogarnac tantascka mocniej
+    //przerobienie sandwicheslist na tanstacka
+    //ostylowanie   
+    //dodac tez rozne filtry - search i przez status
+  //dodac animacje na sandwich generatorze
+  //refactor struktury plikow w calym projekcie
+  //dodanie autofocusa na input gdy sie pojawi addsandwhicform
+  //przemyslec koncepcje menu
+  //wrocic do stargeo rozwiazania - z sandwich generator dawac propy
+  //zrobic na querisy hooki dla reuzywalnosci
+  //filtry na kanapke - zrobiony basic stuff, dodac o wiele wiece 
+    //dac mozliwosc ile cche sie skladnikow
+  //otypowanie danych z prefetcha
+  //dodanie bloga
+  //pomyslenie nad nowymi propertisami i jak dalej rozinac
   //page dla sandwicha
-  //filtry na kanapke - zrobiont basic stuff
+  //pododawac produkty, dodac do nich emotki
 
   return (
     <FormContainer title={"Edit your sandwich"}>
@@ -92,7 +101,7 @@ export const EditSandwichForm: FC<EditSandwichFormProps> = ({
               <Separator />
             </FormLabel>
             <ComboboxSelect<IBreadStuff>
-              items={bread1}
+              items={breadStuff}
               defaultValue={bread}
               name="sandwich.bread"
               category="bread"
