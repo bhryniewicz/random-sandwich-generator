@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import { getRandom, getRandomProducts } from "./utils";
-import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
+import {
+  IBreadStuff,
+  IProducts,
+  ISauce,
+  ProductBase,
+} from "@/types/ingredients";
 import { ISandwich } from "@/types/sandwich";
-import { useSuspenseQuery } from "@tanstack/react-query";
 
 const messages = [
   "Generating",
@@ -13,20 +17,18 @@ const messages = [
   "Adding sauce",
 ];
 
-export const useGenerateSandwich = (sauceFilter: boolean) => {
+export const useGenerateSandwich = (
+  products: IProducts,
+  sauceFilter: boolean
+) => {
   const [sandwich, setSandwich] = useState<ISandwich | null>(null);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [isGenerated, setIsGenerated] = useState<boolean>(false);
   const [currentMessage, setCurrentMessage] = useState(messages[0]);
 
-  const { data } = useSuspenseQuery({
-    queryKey: ["products"],
-    staleTime: 1000 * 60 * 60,
-  });
-
-  const { ingredients: ingredients1, breadStuff, sauces } = data;
-
   let currentMessageIndex = 0;
+
+  const { breadStuff, ingredients, sauces } = products;
 
   const handleGenerateSandwich = () => {
     setIsGenerating(true);
@@ -39,14 +41,14 @@ export const useGenerateSandwich = (sauceFilter: boolean) => {
 
     setTimeout(() => {
       clearInterval(interval);
-      const bread = getRandom<IBreadStuff>(breadStuff);
-      const ingredients = getRandomProducts<ProductBase>(ingredients1);
-      const sauce = sauceFilter ? getRandom<ISauce>(sauces) : null;
+      const chosenBread = getRandom<IBreadStuff>(breadStuff);
+      const chosenIngredients = getRandomProducts<ProductBase>(ingredients);
+      const chosenSauce = sauceFilter ? getRandom<ISauce>(sauces) : null;
 
       const generatedSandwich = {
-        bread,
-        ingredients,
-        sauce,
+        bread: chosenBread,
+        ingredients: chosenIngredients,
+        sauce: chosenSauce,
       };
 
       if (generatedSandwich === null) return;

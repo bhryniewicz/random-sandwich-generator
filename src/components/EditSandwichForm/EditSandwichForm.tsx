@@ -78,6 +78,7 @@ export const EditSandwichForm = () => {
   //pomyslenie nad nowymi propertisami i jak dalej rozinac
   //page dla sandwicha
   //pododawac produkty, dodac do nich emotki
+  //npm package dla kanapki
 
   return (
     <FormContainer title={"Edit your sandwich"}>

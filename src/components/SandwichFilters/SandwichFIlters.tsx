@@ -1,9 +1,14 @@
 import { Checkbox } from "../ui/checkbox";
 import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
 import { Separator } from "../ui/separator";
-import { ComboboxSelect } from "../ComboboxSelect";
+import { IProducts } from "@/types/ingredients";
+import { FC } from "react";
 
-export const SandwichFilters = () => {
+interface SandwichFiltersProps {
+  products: IProducts;
+}
+
+export const SandwichFilters: FC<SandwichFiltersProps> = ({ products }) => {
   const { sauceFilter, setSauceFilter } = useSandwichFiltersContext();
 
   return (

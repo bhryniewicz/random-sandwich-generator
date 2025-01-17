@@ -34,11 +34,11 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
   const { bread, ingredients, sauce } = sandwich;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <h1 className="font-luckiest text-lg text-[#471a08]">
         Save your sandwich
       </h1>
-      <Card className="flex flex-col gap-6 p-16 w-[600px] border-4 border-[#471a08]">
+      <Card className="flex flex-col gap-6 p-16 w-[600px] border-4 border-[#471a08] ">
         <div>
           <h4 className="font-luckiest text-lg text-[#471a08]">Products</h4>
           <Separator />

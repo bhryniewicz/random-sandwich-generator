@@ -7,9 +7,16 @@ import { AddSandwichForm } from "../AddSandwichForm";
 import { SandwichFilters } from "../SandwichFilters";
 import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
 import { Sandwich } from "lucide-react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { IProducts } from "@/types/ingredients";
 
 export const SandwichGenerator = () => {
   const { sauceFilter } = useSandwichFiltersContext();
+
+  const { data: products } = useSuspenseQuery<IProducts>({
+    queryKey: ["products"],
+    staleTime: 1000 * 60 * 60,
+  });
 
   const {
     sandwich,
@@ -18,7 +25,7 @@ export const SandwichGenerator = () => {
     isGenerated,
     resetSandwichGeneration,
     currentMessage,
-  } = useGenerateSandwich(sauceFilter);
+  } = useGenerateSandwich(products, sauceFilter);
 
   return (
     <>
@@ -28,7 +35,7 @@ export const SandwichGenerator = () => {
             Generate the finest sandwich
           </h1>
           <Card className="p-16 w-[600px] border-4 border-[#471a08]">
-            <SandwichFilters />
+            <SandwichFilters products={products} />
             <Button
               className="flex justify-center items-center w-full py-12 bg-[#f36805] text-[40px] font-luckiest"
               variant={"default"}
