@@ -51,7 +51,7 @@ const LinkItem = ({ href, label }: { href: string; label: string }) => {
   return (
     <Link
       href={`/${href}`}
-      className="mb-auto hover:text-[#f36805] hover:underline transition-colors duration-300"
+      className="mb-auto hover:text-orange_primary hover:underline transition-colors duration-300"
     >
       {label}
     </Link>

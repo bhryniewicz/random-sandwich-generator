@@ -39,7 +39,7 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
 
   return (
     <FormContainer title={"Save your sandwich"}>
-      <Card className="flex flex-col gap-6">
+      <Card className="flex flex-col gap-6 ">
         <div>
           <h4 className="font-luckiest text-lg text-[#471a08]">Products</h4>
           <Separator />
@@ -75,7 +75,7 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
           </h4>
           <Separator />
         </CardTitle>
-        <p className="text-sm font-bold text-gray-600">
+        <p className="text-sm font-bold text-gray-500">
           Saving option gives a possility to check later on what sandwich you ve
           got but also editing and more exiciting stuff. Add name to remember
           what was that amazing sandwich. You can write a date or some weird

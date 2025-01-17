@@ -17,7 +17,7 @@ export const SandwichFilters: FC<SandwichFiltersProps> = ({ products }) => {
         <h4 className="font-luckiest text-lg text-[#471a08]">Filters</h4>
         <Separator />
       </div>
-      <p className="text-sm font-bold text-gray-600">
+      <p className="text-sm font-bold text-gray-500">
         Add some filters to your sandwich. Maybe it's randomly generated, but I
         bet if you are vegetarian, you don't want any meat inside your next
         meal.

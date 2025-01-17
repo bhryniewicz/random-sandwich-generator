@@ -14,8 +14,10 @@ export default {
         luckiest: ["var(--font-luckiest)"],
       },
       colors: {
-        background: "var(--background)",
         foreground: "var(--foreground)",
+        orange_primary: "#f36805",
+        orange_secondary: "#fa900f",
+        dark_brown: "#471a08",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -34,4 +36,3 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-

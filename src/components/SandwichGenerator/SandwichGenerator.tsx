@@ -32,7 +32,7 @@ export const SandwichGenerator = () => {
           <Card className="p-16 w-[600px] border-4 border-[#471a08]">
             <SandwichFilters products={products} />
             <Button
-              className="flex justify-center items-center w-full py-12 bg-[#f36805] text-[40px] font-luckiest"
+              className="flex justify-center items-center w-full py-12 bg-orange_primary text-[40px] font-luckiest"
               variant={"default"}
               onClick={handleGenerateSandwich}
             >

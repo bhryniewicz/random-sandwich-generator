@@ -1,19 +1,13 @@
 "use client";
 
-import { editSandwich, getSandwich } from "@/server/insertSandwich";
+import { editSandwich } from "@/server/insertSandwich";
 import { ICreatedSandwich } from "@/types/sandwich";
-import { useQuery } from "@tanstack/react-query";
 import { notFound, useParams } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EditSandwichValues, sandwichSchema } from "./schema";
 import { Form, FormLabel } from "../ui/form";
-import {
-  IBreadStuff,
-  IProducts,
-  ISauce,
-  ProductBase,
-} from "@/types/ingredients";
+import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
 import { ComboboxSelect } from "../ComboboxSelect";
 import { Button } from "../ui/button";
 import { FormInput } from "../FormInput";
@@ -25,15 +19,14 @@ import { useGetSandwich } from "@/hooks/queries/useGetSandwich/useGetSandwich";
 
 export const EditSandwichForm = () => {
   const { id } = useParams();
-  const { products } = useGetProducts();
   const { sandwichData, isSandwichDataLoading } = useGetSandwich(id as string);
+  const { products } = useGetProducts();
 
   const form = useForm<EditSandwichValues>({
     resolver: zodResolver(sandwichSchema),
   });
 
   if (isSandwichDataLoading) return <Loader isBackground />;
-
   if (!sandwichData) return notFound();
 
   const {
@@ -67,12 +60,12 @@ export const EditSandwichForm = () => {
   //przemyslec koncepcje menu
   //filtry na kanapke - zrobiony basic stuff, dodac o wiele wiece
   //dac mozliwosc ile cche sie skladnikow
-  //otypowanie danych z prefetcha
   //dodanie bloga
   //pomyslenie nad nowymi propertisami i jak dalej rozinac
   //page dla sandwicha
   //pododawac produkty, dodac do nich emotki
   //npm package dla kanapki
+  //usprawnic nawigacje na stronach
 
   return (
     <FormContainer title={"Edit your sandwich"}>

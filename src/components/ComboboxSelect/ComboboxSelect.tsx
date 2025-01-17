@@ -62,7 +62,7 @@ export const ComboboxSelect = <T extends ProductBase>({
                       ? field.value.map((item: T) => (
                           <div
                             key={item._id}
-                            className="flex gap-2 bg-[#fa900f] text-white px-2 py-[2px] rounded"
+                            className="flex gap-2 bg-orange_secondary text-white px-2 py-[2px] rounded"
                           >
                             {item.name}
                           </div>
@@ -105,7 +105,7 @@ export const ComboboxSelect = <T extends ProductBase>({
                           }}
                           className={cn(
                             isSelected && multiple
-                              ? "text-white bg-[#fa900f]"
+                              ? "text-white bg-orange_secondary"
                               : "",
                             "cursor-pointer"
                           )}
