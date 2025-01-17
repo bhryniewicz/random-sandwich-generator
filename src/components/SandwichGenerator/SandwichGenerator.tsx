@@ -1,22 +1,17 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { useGenerateSandwich } from "@/hooks/useGenerateSandwich/useGenerateSandiwch";
+import { useGenerateSandwich } from "@/hooks/useGenerateSandwich";
 import { Button } from "../ui/button";
 import { AddSandwichForm } from "../AddSandwichForm";
 import { SandwichFilters } from "../SandwichFilters";
 import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
 import { Sandwich } from "lucide-react";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { IProducts } from "@/types/ingredients";
+import { useGetProducts } from "@/hooks/queries/useProducts/useProducts";
 
 export const SandwichGenerator = () => {
   const { sauceFilter } = useSandwichFiltersContext();
-
-  const { data: products } = useSuspenseQuery<IProducts>({
-    queryKey: ["products"],
-    staleTime: 1000 * 60 * 60,
-  });
+  const { products } = useGetProducts();
 
   const {
     sandwich,

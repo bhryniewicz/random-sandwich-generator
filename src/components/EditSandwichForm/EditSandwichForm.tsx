@@ -2,7 +2,7 @@
 
 import { editSandwich, getSandwich } from "@/server/insertSandwich";
 import { ICreatedSandwich } from "@/types/sandwich";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { notFound, useParams } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,26 +20,19 @@ import { FormInput } from "../FormInput";
 import { Loader } from "../Loader";
 import { Separator } from "../ui/separator";
 import { FormContainer } from "../FormContainer";
+import { useGetProducts } from "@/hooks/queries/useProducts/useProducts";
+import { useGetSandwich } from "@/hooks/queries/useGetSandwich/useGetSandwich";
 
 export const EditSandwichForm = () => {
   const { id } = useParams();
-
-  const { data } = useSuspenseQuery<IProducts>({
-    queryKey: ["products"],
-    staleTime: 1000 * 60 * 60,
-  });
-
-  const { data: sandwichData, isLoading } = useQuery<ICreatedSandwich>({
-    queryKey: ["sandwich", id],
-    queryFn: () => getSandwich(id as string),
-    staleTime: 1000 * 60 * 5,
-  });
+  const { products } = useGetProducts();
+  const { sandwichData, isSandwichDataLoading } = useGetSandwich(id as string);
 
   const form = useForm<EditSandwichValues>({
     resolver: zodResolver(sandwichSchema),
   });
 
-  if (isLoading) return <Loader isBackground />;
+  if (isSandwichDataLoading) return <Loader isBackground />;
 
   if (!sandwichData) return notFound();
 
@@ -48,7 +41,7 @@ export const EditSandwichForm = () => {
     sandwich: { bread, sauce, ingredients },
   } = sandwichData;
 
-  const { breadStuff, sauces, ingredients: serverIngredients } = data;
+  const { breadStuff, sauces, ingredients: serverIngredients } = products;
 
   const onSubmit = async (changedData: EditSandwichValues) => {
     const editedSandwich: ICreatedSandwich = {
@@ -60,7 +53,6 @@ export const EditSandwichForm = () => {
   };
 
   //pomyslec nad landing page
-  //refactor forma z componentu
   //kolory do zmiennych
   //local storage / cookies zapis preferencji
   //ogarnac zmienne srodowiskowe
@@ -73,7 +65,6 @@ export const EditSandwichForm = () => {
   //refactor struktury plikow w calym projekcie
   //dodanie autofocusa na input gdy sie pojawi addsandwhicform
   //przemyslec koncepcje menu
-  //zrobic na querisy hooki dla reuzywalnosci
   //filtry na kanapke - zrobiony basic stuff, dodac o wiele wiece
   //dac mozliwosc ile cche sie skladnikow
   //otypowanie danych z prefetcha
