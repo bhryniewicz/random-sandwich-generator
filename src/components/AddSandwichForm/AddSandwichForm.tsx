@@ -8,6 +8,9 @@ import { FC } from "react";
 import { FormInput } from "../FormInput";
 import { Separator } from "../ui/separator";
 import { ArrowDownToLine } from "lucide-react";
+import { FormContainer } from "../FormContainer";
+import { addSandwichSchema, AddSandwichValues } from "./schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface AddSandwichFormProps {
   sandwich: ISandwich;
@@ -20,7 +23,8 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
   resetSandwichGeneration,
   generateSandwich,
 }) => {
-  const form = useForm({
+  const form = useForm<AddSandwichValues>({
+    resolver: zodResolver(addSandwichSchema),
     defaultValues: {
       name: "New Sandwich",
     },
@@ -34,11 +38,8 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
   const { bread, ingredients, sauce } = sandwich;
 
   return (
-    <div className="flex flex-col ">
-      <h1 className="font-luckiest text-lg text-[#471a08]">
-        Save your sandwich
-      </h1>
-      <Card className="flex flex-col gap-6 p-16 w-[600px] border-4 border-[#471a08] ">
+    <FormContainer title={"Save your sandwich"}>
+      <Card className="flex flex-col gap-6">
         <div>
           <h4 className="font-luckiest text-lg text-[#471a08]">Products</h4>
           <Separator />
@@ -116,6 +117,6 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
           </form>
         </Form>
       </Card>
-    </div>
+    </FormContainer>
   );
 };

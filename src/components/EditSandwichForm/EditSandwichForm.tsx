@@ -8,7 +8,12 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EditSandwichValues, sandwichSchema } from "./schema";
 import { Form, FormLabel } from "../ui/form";
-import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
+import {
+  IBreadStuff,
+  IProducts,
+  ISauce,
+  ProductBase,
+} from "@/types/ingredients";
 import { ComboboxSelect } from "../ComboboxSelect";
 import { Button } from "../ui/button";
 import { FormInput } from "../FormInput";
@@ -19,7 +24,7 @@ import { FormContainer } from "../FormContainer";
 export const EditSandwichForm = () => {
   const { id } = useParams();
 
-  const { data } = useSuspenseQuery({
+  const { data } = useSuspenseQuery<IProducts>({
     queryKey: ["products"],
     staleTime: 1000 * 60 * 60,
   });
@@ -56,23 +61,21 @@ export const EditSandwichForm = () => {
 
   //pomyslec nad landing page
   //refactor forma z componentu
-  //parsowanie w add sandwich form
   //kolory do zmiennych
   //local storage / cookies zapis preferencji
   //ogarnac zmienne srodowiskowe
   //zobaczyc jakies api z jedzeniem????
   //list sandwhiches refactor
-    //przerobienie sandwicheslist na tanstacka
-    //ostylowanie   
-    //dodac tez rozne filtry - search i przez status
+  //przerobienie sandwicheslist na tanstacka
+  //ostylowanie
+  //dodac tez rozne filtry - search i przez status
   //dodac animacje na sandwich generatorze
   //refactor struktury plikow w calym projekcie
   //dodanie autofocusa na input gdy sie pojawi addsandwhicform
   //przemyslec koncepcje menu
-  //wrocic do stargeo rozwiazania - z sandwich generator dawac propy
   //zrobic na querisy hooki dla reuzywalnosci
-  //filtry na kanapke - zrobiony basic stuff, dodac o wiele wiece 
-    //dac mozliwosc ile cche sie skladnikow
+  //filtry na kanapke - zrobiony basic stuff, dodac o wiele wiece
+  //dac mozliwosc ile cche sie skladnikow
   //otypowanie danych z prefetcha
   //dodanie bloga
   //pomyslenie nad nowymi propertisami i jak dalej rozinac
