@@ -1,4 +1,4 @@
-import { IBreadStuff, ISauce, ProductBase } from "./ingredients";
+import { IBreadStuff, ISauce, ProductBase } from "./products";
 
 export interface ISandwich {
   bread: IBreadStuff;

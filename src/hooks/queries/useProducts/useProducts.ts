@@ -1,4 +1,4 @@
-import { IProducts } from "@/types/ingredients";
+import { IProducts } from "@/types/products";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetProducts = () => {

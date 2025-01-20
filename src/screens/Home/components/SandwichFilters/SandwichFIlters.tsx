@@ -1,7 +1,7 @@
-import { Checkbox } from "../ui/checkbox";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
-import { Separator } from "../ui/separator";
-import { IProducts } from "@/types/ingredients";
+import { Separator } from "@/components/ui/separator";
+import { IProducts } from "@/types/products";
 import { FC } from "react";
 
 interface SandwichFiltersProps {
@@ -9,11 +9,8 @@ interface SandwichFiltersProps {
 }
 
 export const SandwichFilters: FC<SandwichFiltersProps> = ({ products }) => {
-  const {
-    sauceFilter,
-    setSauceFilter,
-    setIngredientsQuantity,
-  } = useSandwichFiltersContext();
+  const { sauceFilter, setSauceFilter, setIngredientsQuantity } =
+    useSandwichFiltersContext();
 
   return (
     <div className="flex flex-col gap-4 py-8 mb-12">

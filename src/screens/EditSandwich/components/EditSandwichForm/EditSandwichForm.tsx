@@ -1,19 +1,19 @@
 "use client";
 
-import { editSandwich } from "@/server/insertSandwich";
+import { editSandwich } from "@/services/api/sandwich";
 import { ICreatedSandwich } from "@/types/sandwich";
 import { notFound, useParams } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EditSandwichValues, sandwichSchema } from "./schema";
-import { Form, FormLabel } from "../ui/form";
-import { IBreadStuff, ISauce, ProductBase } from "@/types/ingredients";
-import { ComboboxSelect } from "../ComboboxSelect";
-import { Button } from "../ui/button";
-import { FormInput } from "../FormInput";
-import { Loader } from "../Loader";
-import { Separator } from "../ui/separator";
-import { FormContainer } from "../FormContainer";
+import { Form, FormLabel } from "../../../../components/ui/form";
+import { IBreadStuff, ISauce, ProductBase } from "@/types/products";
+import { ComboboxSelect } from "../../../../components/ComboboxSelect";
+import { Button } from "../../../../components/ui/button";
+import { FormInput } from "../../../../components/FormInput";
+import { Loader } from "../../../../components/Loader";
+import { Separator } from "../../../../components/ui/separator";
+import { FormContainer } from "../../../../components/FormContainer";
 import { useGetProducts } from "@/hooks/queries/useProducts/useProducts";
 import { useGetSandwich } from "@/hooks/queries/useGetSandwich/useGetSandwich";
 
@@ -45,21 +45,20 @@ export const EditSandwichForm = () => {
     await editSandwich(editedSandwich);
   };
 
-  //refactor struktury plikow w calym projekcie
-  //page dla sandwicha
-  //przemyslec koncepcje menu
   //pomyslec nad landing page
+  //page dla sandwicha
+  //refactor struktury plikow w calym projekcie
+  //dodanie autofocusa na input gdy sie pojawi addsandwhicform
+  //usprawnic nawigacje na stronach
   //dodac tez rozne filtry - search i przez status -> status juz tylko
   //local storage§ / cookies zapis preferencji
   //npm package dla kanapki
   //dodanie bloga
   //zobaczyc jakies api z jedzeniem????
-  //dodanie autofocusa na input gdy sie pojawi addsandwhicform
   //filtry na kanapke - zrobiony basic stuff, dodac o wiele wiece
   //jezeli odswizeymy z query w adresie to nie zmienia sie w zaleznosci od tego wartosci
   //pomyslenie nad nowymi propertisami i jak dalej rozinac
   //pododawac produkty, dodac do nich emotki
-  //usprawnic nawigacje na stronach
   //toasty z informacje czy sie powidolo czy nie
   //bug z undeifned products jak strona jest dluzej nieuzywana
   //mobile - calosc apki

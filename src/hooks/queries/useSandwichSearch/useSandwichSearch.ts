@@ -1,4 +1,4 @@
-import { deleteSandwich } from "@/server/insertSandwich";
+import { deleteSandwich } from "@/services/api/sandwich";
 import { ICreatedSandwich } from "@/types/sandwich";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 

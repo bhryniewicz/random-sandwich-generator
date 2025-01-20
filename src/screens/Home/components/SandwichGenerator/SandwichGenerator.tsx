@@ -2,7 +2,7 @@
 
 import { Card } from "@/components/ui/card";
 import { useGenerateSandwich } from "@/hooks/useGenerateSandwich";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { AddSandwichForm } from "../AddSandwichForm";
 import { SandwichFilters } from "../SandwichFilters";
 import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";

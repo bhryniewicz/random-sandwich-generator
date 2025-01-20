@@ -1,5 +1,5 @@
-import { EditSandwichForm } from "@/components/EditSandwichForm/EditSandwichForm";
+import { EditSandwich as EditSandwichScreen } from "@/screens/EditSandwich";
 
 export default async function EditSandwichPage() {
-  return <EditSandwichForm />;
+  return <EditSandwichScreen />;
 }

@@ -1,4 +1,4 @@
-import { ProductBase } from "@/types/ingredients";
+import { ProductBase } from "@/types/products";
 
 export const getRandom = <T extends { name: string }>(arr: T[]): T => {
   return arr[Math.floor(Math.random() * arr.length)];

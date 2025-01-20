@@ -1,4 +1,4 @@
-import { sandwichSchema } from "@/components/EditSandwichForm/schema";
+import { sandwichSchema } from "@/screens/EditSandwich/components/EditSandwichForm/schema";
 import clientPromise from "@/lib/mongodb/mongodb";
 import { ObjectId } from "mongodb";
 import { revalidatePath } from "next/cache";

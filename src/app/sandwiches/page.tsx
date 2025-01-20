@@ -1,12 +1,8 @@
-import { SandwichesList } from "@/components/SandwichesList";
-import { getSandwiches } from "@/server/sandwiches";
+import { Sandwiches as SandwichesScreen } from "@/screens/Sandwiches";
+import { getSandwiches } from "@/services/database/sandwiches";
 
 export default async function SandwichesPage() {
   const sandwiches = await getSandwiches();
 
-  return (
-    <div className="self-start mt-8">
-      <SandwichesList sandwiches={sandwiches} />
-    </div>
-  );
+  return <SandwichesScreen sandwiches={sandwiches} />;
 }

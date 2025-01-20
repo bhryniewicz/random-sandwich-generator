@@ -3,7 +3,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getProducts } from "@/server/ingredients";
+import { getProducts } from "@/services/database/ingredients";
 
 export default async function ServerLayout({
   children,

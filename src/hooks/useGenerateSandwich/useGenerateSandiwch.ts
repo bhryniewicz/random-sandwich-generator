@@ -2,12 +2,7 @@
 
 import { useState } from "react";
 import { getRandom, getRandomProducts } from "./utils";
-import {
-  IBreadStuff,
-  IProducts,
-  ISauce,
-  ProductBase,
-} from "@/types/ingredients";
+import { IBreadStuff, IProducts, ISauce, ProductBase } from "@/types/products";
 import { ISandwich } from "@/types/sandwich";
 
 const messages = [
