@@ -20,7 +20,7 @@ export const SandwichGenerator = () => {
     isGenerated,
     resetSandwichGeneration,
     currentMessage,
-  } = useGenerateSandwich(products, sauceFilter, ingredientsQuantity);
+  } = useGenerateSandwich(products!, sauceFilter, ingredientsQuantity);
 
   return (
     <AnimatePresence mode="wait">

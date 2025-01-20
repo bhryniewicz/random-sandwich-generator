@@ -6,14 +6,14 @@ import { notFound, useParams } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EditSandwichValues, sandwichSchema } from "./schema";
-import { Form, FormLabel } from "../../../../components/ui/form";
+import { Form, FormLabel } from "@/components/ui/form";
 import { IBreadStuff, ISauce, ProductBase } from "@/types/products";
-import { ComboboxSelect } from "../../../../components/ComboboxSelect";
-import { Button } from "../../../../components/ui/button";
-import { FormInput } from "../../../../components/FormInput";
-import { Loader } from "../../../../components/Loader";
-import { Separator } from "../../../../components/ui/separator";
-import { FormContainer } from "../../../../components/FormContainer";
+import { ComboboxSelect } from "@/components/ComboboxSelect";
+import { Button } from "@/components/ui/button";
+import { FormInput } from "@/components/FormInput";
+import { Loader } from "@/components/Loader";
+import { Separator } from "@/components/ui/separator";
+import { FormContainer } from "@/components/FormContainer";
 import { useGetProducts } from "@/hooks/queries/useProducts/useProducts";
 import { useGetSandwich } from "@/hooks/queries/useGetSandwich/useGetSandwich";
 
@@ -47,7 +47,6 @@ export const EditSandwichForm = () => {
 
   //pomyslec nad landing page
   //page dla sandwicha
-  //refactor struktury plikow w calym projekcie
   //dodanie autofocusa na input gdy sie pojawi addsandwhicform
   //usprawnic nawigacje na stronach
   //dodac tez rozne filtry - search i przez status -> status juz tylko

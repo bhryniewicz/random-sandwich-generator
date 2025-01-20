@@ -1,4 +1,4 @@
-import { SandwichesList } from "@/components/SandwichesList";
+import { SandwichesList } from "@/screens/Sandwiches/components/SandwichesList";
 import { ICreatedSandwich } from "@/types/sandwich";
 
 export const Sandwiches = ({
