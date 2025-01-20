@@ -47,7 +47,6 @@ export const EditSandwichForm = () => {
 
   //pomyslec nad landing page
   //local storage / cookies zapis preferencji
-  //ogarnac zmienne srodowiskowe
   //zobaczyc jakies api z jedzeniem????
   //dodac tez rozne filtry - search i przez status -> status juz tylko
   //jezeli odswizeymy z query w adresie to nie zmienia sie w zaleznosci od tego wartosci
@@ -66,7 +65,6 @@ export const EditSandwichForm = () => {
   //bug z undeifned products jak strona jest dluzej nieuzywana
   //mobile - calosc apki
   //testy zaczac pisac
-
 
   return (
     <FormContainer title={"Edit your sandwich"}>

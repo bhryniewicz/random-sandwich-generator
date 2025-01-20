@@ -6,8 +6,8 @@ import { Button } from "../ui/button";
 import { AddSandwichForm } from "../AddSandwichForm";
 import { SandwichFilters } from "../SandwichFilters";
 import { useSandwichFiltersContext } from "@/contexts/sandwichFIltersContext";
-import { Sandwich } from "lucide-react";
 import { useGetProducts } from "@/hooks/queries/useProducts/useProducts";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const SandwichGenerator = () => {
   const { sauceFilter, ingredientsQuantity } = useSandwichFiltersContext();
@@ -23,9 +23,16 @@ export const SandwichGenerator = () => {
   } = useGenerateSandwich(products, sauceFilter, ingredientsQuantity);
 
   return (
-    <>
+    <AnimatePresence mode="wait">
       {!isGenerating && !isGenerated && (
-        <div className="flex flex-col justify-between">
+        <motion.div
+          key="initial-state"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col justify-between"
+        >
           <h1 className="font-luckiest text-lg text-[#471a08]">
             Generate the finest sandwich
           </h1>
@@ -39,11 +46,18 @@ export const SandwichGenerator = () => {
               Generate
             </Button>
           </Card>
-        </div>
+        </motion.div>
       )}
 
       {isGenerating && (
-        <div className="flex justify-center items-center bg-[url('/assets/sandwich.png')] w-[800px] h-[800px] bg-cover bg-center">
+        <motion.div
+          key="generating-state"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.8, opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center items-center bg-[url('/assets/sandwich.png')] w-[800px] h-[800px] bg-cover bg-center"
+        >
           <h3
             className="text-4xl text-white font-luckiest mt-8"
             style={{
@@ -53,16 +67,24 @@ export const SandwichGenerator = () => {
           >
             {currentMessage}...
           </h3>
-        </div>
+        </motion.div>
       )}
 
       {isGenerated && sandwich && (
-        <AddSandwichForm
-          sandwich={sandwich}
-          resetSandwichGeneration={resetSandwichGeneration}
-          generateSandwich={handleGenerateSandwich}
-        />
+        <motion.div
+          key="generated-state"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          transition={{ duration: 0.5 }}
+        >
+          <AddSandwichForm
+            sandwich={sandwich}
+            resetSandwichGeneration={resetSandwichGeneration}
+            generateSandwich={handleGenerateSandwich}
+          />
+        </motion.div>
       )}
-    </>
+    </AnimatePresence>
   );
 };
