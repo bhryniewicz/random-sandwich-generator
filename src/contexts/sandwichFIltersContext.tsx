@@ -6,6 +6,8 @@ interface SandwichFiltersContextProps {
   setSauceFilter: (value: boolean) => void;
   breadType: string;
   setBreadType: (value: string) => void;
+  ingredientsQuantity: number | null;
+  setIngredientsQuantity: (value: number | null) => void;
 }
 
 const SandwichFiltersContext = createContext<
@@ -15,12 +17,25 @@ const SandwichFiltersContext = createContext<
 export const SandwichFiltersProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const { sauceFilter, setSauceFilter, breadType, setBreadType } =
-    useSandwichFilters();
+  const {
+    sauceFilter,
+    setSauceFilter,
+    breadType,
+    setBreadType,
+    ingredientsQuantity,
+    setIngredientsQuantity,
+  } = useSandwichFilters();
 
   return (
     <SandwichFiltersContext.Provider
-      value={{ sauceFilter, setSauceFilter, breadType, setBreadType }}
+      value={{
+        sauceFilter,
+        setSauceFilter,
+        breadType,
+        setBreadType,
+        ingredientsQuantity,
+        setIngredientsQuantity,
+      }}
     >
       {children}
     </SandwichFiltersContext.Provider>

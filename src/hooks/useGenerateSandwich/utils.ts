@@ -5,9 +5,10 @@ export const getRandom = <T extends { name: string }>(arr: T[]): T => {
 };
 
 export const getRandomProducts = <T extends ProductBase>(
-  products: T[]
+  products: T[],
+  quantity: number | null
 ): T[] => {
-  const numProducts = Math.floor(Math.random() * 3) + 1;
+  const numProducts = quantity ? quantity : Math.floor(Math.random() * 3) + 1;
   const randomlyChosenProducts: T[] = [];
 
   const getRandomProduct = () => {

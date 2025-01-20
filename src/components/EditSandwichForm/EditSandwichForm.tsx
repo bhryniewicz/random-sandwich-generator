@@ -27,7 +27,7 @@ export const EditSandwichForm = () => {
   });
 
   if (isSandwichDataLoading) return <Loader isBackground />;
-  if (!sandwichData) return notFound();
+  if (!sandwichData || !products) return notFound();
 
   const {
     name,
@@ -46,26 +46,24 @@ export const EditSandwichForm = () => {
   };
 
   //pomyslec nad landing page
-  //kolory do zmiennych
   //local storage / cookies zapis preferencji
   //ogarnac zmienne srodowiskowe
   //zobaczyc jakies api z jedzeniem????
-  //list sandwhiches refactor
-  //przerobienie sandwicheslist na tanstacka
-  //ostylowanie
-  //dodac tez rozne filtry - search i przez status
+  //dodac tez rozne filtry - search i przez status -> status juz tylko
+  //jezeli odswizeymy z query w adresie to nie zmienia sie w zaleznosci od tego wartosci
   //dodac animacje na sandwich generatorze
   //refactor struktury plikow w calym projekcie
   //dodanie autofocusa na input gdy sie pojawi addsandwhicform
   //przemyslec koncepcje menu
   //filtry na kanapke - zrobiony basic stuff, dodac o wiele wiece
-  //dac mozliwosc ile cche sie skladnikow
   //dodanie bloga
   //pomyslenie nad nowymi propertisami i jak dalej rozinac
   //page dla sandwicha
   //pododawac produkty, dodac do nich emotki
   //npm package dla kanapki
   //usprawnic nawigacje na stronach
+  //toasty z informacje czy sie powidolo czy nie
+  //bug z undeifned products jak strona jest dluzej nieuzywana
 
   return (
     <FormContainer title={"Edit your sandwich"}>

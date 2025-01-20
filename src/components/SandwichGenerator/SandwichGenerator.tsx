@@ -10,7 +10,7 @@ import { Sandwich } from "lucide-react";
 import { useGetProducts } from "@/hooks/queries/useProducts/useProducts";
 
 export const SandwichGenerator = () => {
-  const { sauceFilter } = useSandwichFiltersContext();
+  const { sauceFilter, ingredientsQuantity } = useSandwichFiltersContext();
   const { products } = useGetProducts();
 
   const {
@@ -20,7 +20,7 @@ export const SandwichGenerator = () => {
     isGenerated,
     resetSandwichGeneration,
     currentMessage,
-  } = useGenerateSandwich(products, sauceFilter);
+  } = useGenerateSandwich(products, sauceFilter, ingredientsQuantity);
 
   return (
     <>

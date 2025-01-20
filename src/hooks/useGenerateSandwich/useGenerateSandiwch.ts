@@ -19,7 +19,8 @@ const messages = [
 
 export const useGenerateSandwich = (
   products: IProducts,
-  sauceFilter: boolean
+  sauceFilter: boolean,
+  quantity: number | null = null
 ) => {
   const [sandwich, setSandwich] = useState<ISandwich | null>(null);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
@@ -42,8 +43,13 @@ export const useGenerateSandwich = (
     setTimeout(() => {
       clearInterval(interval);
       const chosenBread = getRandom<IBreadStuff>(breadStuff);
-      const chosenIngredients = getRandomProducts<ProductBase>(ingredients);
+      const chosenIngredients = getRandomProducts<ProductBase>(
+        ingredients,
+        quantity
+      );
       const chosenSauce = sauceFilter ? getRandom<ISauce>(sauces) : null;
+
+      console.log(chosenIngredients);
 
       const generatedSandwich = {
         bread: chosenBread,

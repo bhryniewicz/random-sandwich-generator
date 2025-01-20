@@ -9,7 +9,11 @@ interface SandwichFiltersProps {
 }
 
 export const SandwichFilters: FC<SandwichFiltersProps> = ({ products }) => {
-  const { sauceFilter, setSauceFilter } = useSandwichFiltersContext();
+  const {
+    sauceFilter,
+    setSauceFilter,
+    setIngredientsQuantity,
+  } = useSandwichFiltersContext();
 
   return (
     <div className="flex flex-col gap-4 py-8 mb-12">
@@ -32,6 +36,10 @@ export const SandwichFilters: FC<SandwichFiltersProps> = ({ products }) => {
           No sauce in sandwich
         </label>
       </div>
+      <input
+        type="number"
+        onChange={(e) => setIngredientsQuantity(Number(e.target.value))}
+      />
       {/* <ComboboxSelect 
         items={breads}
         name
