@@ -49,15 +49,11 @@ export const useGenerateSandwich = (
       );
       const chosenSauce = sauceFilter ? getRandom<ISauce>(sauces) : null;
 
-      console.log(chosenIngredients);
-
       const generatedSandwich = {
         bread: chosenBread,
         ingredients: chosenIngredients,
         sauce: chosenSauce,
       };
-
-      if (generatedSandwich === null) return;
 
       setSandwich(generatedSandwich);
 

@@ -36,13 +36,6 @@ export const SandwichGenerator = () => {
               variant={"default"}
               onClick={handleGenerateSandwich}
             >
-              <Sandwich
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  marginBottom: "0.5rem",
-                }}
-              />
               Generate
             </Button>
           </Card>

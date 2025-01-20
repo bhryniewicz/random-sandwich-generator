@@ -4,8 +4,7 @@ if (!process.env.MONGODB_URI) {
   throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
 }
 
-const uri =
-  "mongodb+srv://bartosz:Pakoltv123@rsg.ui2wq.mongodb.net/sandwiches?retryWrites=true&w=majority";
+const uri = process.env.MONGODB_URI;
 const options = { appName: "random-sandwich-generator" };
 
 let client: MongoClient;
