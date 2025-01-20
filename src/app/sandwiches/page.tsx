@@ -5,7 +5,7 @@ export default async function SandwichesPage() {
   const sandwiches = await getSandwiches();
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen flex-grow">
+    <div className="self-start mt-8">
       <SandwichesList sandwiches={sandwiches} />
     </div>
   );

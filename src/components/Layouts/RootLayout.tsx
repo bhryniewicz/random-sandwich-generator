@@ -33,9 +33,11 @@ export default function RootLayout({
       <body>
         <QueryClientProvider client={queryClient}>
           <SandwichFiltersProvider>
-            <div className="flex gradient">
+            <div className="flex flex-col gradient">
               <Navbar />
-              {children}
+              <div className="flex items-center justify-center h-[90vh] w-full">
+                {children}
+              </div>
             </div>
           </SandwichFiltersProvider>
           <ReactQueryDevtools />

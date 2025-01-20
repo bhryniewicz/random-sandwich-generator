@@ -36,15 +36,24 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
   };
 
   return (
-    <div className="container flex flex-col h-[800px] p-16 justify-end gap-2 overflow-y-scroll pt-16">
+    <div className="container flex flex-col items-start gap-2">
       <Input
         type="search"
         onChange={(e) => handleSearch(e.target.value)}
         placeholder="Search for your sandwich"
+        className="bg-white text-black border-2 border-orange_primary"
       />
-      {sandwichList?.map((sandwich) => {
-        return <SandwichCard key={sandwich._id} {...sandwich} />;
-      })}
+      <p>
+        Search results:{" "}
+        <span className="text-orange_primary font-bold">
+          {sandwichList?.length}
+        </span>
+      </p>
+      <div className="grid grid-cols-2 gap-4 pt-4">
+        {sandwichList?.map((sandwich) => {
+          return <SandwichCard key={sandwich._id} {...sandwich} />;
+        })}
+      </div>
     </div>
   );
 };

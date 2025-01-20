@@ -45,21 +45,20 @@ export const EditSandwichForm = () => {
     await editSandwich(editedSandwich);
   };
 
-  //pomyslec nad landing page
-  //local storage / cookies zapis preferencji
-  //zobaczyc jakies api z jedzeniem????
-  //dodac tez rozne filtry - search i przez status -> status juz tylko
-  //jezeli odswizeymy z query w adresie to nie zmienia sie w zaleznosci od tego wartosci
-  //dodac animacje na sandwich generatorze
   //refactor struktury plikow w calym projekcie
-  //dodanie autofocusa na input gdy sie pojawi addsandwhicform
-  //przemyslec koncepcje menu
-  //filtry na kanapke - zrobiony basic stuff, dodac o wiele wiece
-  //dodanie bloga
-  //pomyslenie nad nowymi propertisami i jak dalej rozinac
   //page dla sandwicha
-  //pododawac produkty, dodac do nich emotki
+  //przemyslec koncepcje menu
+  //pomyslec nad landing page
+  //dodac tez rozne filtry - search i przez status -> status juz tylko
+  //local storage§ / cookies zapis preferencji
   //npm package dla kanapki
+  //dodanie bloga
+  //zobaczyc jakies api z jedzeniem????
+  //dodanie autofocusa na input gdy sie pojawi addsandwhicform
+  //filtry na kanapke - zrobiony basic stuff, dodac o wiele wiece
+  //jezeli odswizeymy z query w adresie to nie zmienia sie w zaleznosci od tego wartosci
+  //pomyslenie nad nowymi propertisami i jak dalej rozinac
+  //pododawac produkty, dodac do nich emotki
   //usprawnic nawigacje na stronach
   //toasty z informacje czy sie powidolo czy nie
   //bug z undeifned products jak strona jest dluzej nieuzywana

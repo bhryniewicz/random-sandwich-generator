@@ -27,8 +27,8 @@ const routes = [
 
 export const Navbar = () => {
   return (
-    <div className="flex flex-col justify-center uppercase text-[80px] text-[#471a08] w-[40%] px-8 py-16 font-luckiest">
-      <div className="flex items-center mb-auto">
+    <div className="flex justify-between items-center uppercase text-[24px] text-[#471a08] px-16 pt-8 font-luckiest h-[10vh]">
+      <div className="flex items-center">
         <Image src={Sandwich} width={100} height={100} alt="sandwich logo" />
         <h1 className="text-xl">
           Random Sandwich
@@ -36,7 +36,7 @@ export const Navbar = () => {
           Generator
         </h1>
       </div>
-      <div className="flex flex-col">
+      <div className="flex gap-8">
         {routes.map((route) => {
           return (
             <LinkItem href={route.href} label={route.label} key={route.label} />
