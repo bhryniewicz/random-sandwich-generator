@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Card, CardTitle } from "../ui/card";
 import { Form } from "../ui/form";
-import { insertSandwich } from "@/server/insertSandwich";
 import { ISandwich } from "@/types/sandwich";
 import { FC } from "react";
 import { FormInput } from "../FormInput";
@@ -11,6 +10,7 @@ import { ArrowDownToLine } from "lucide-react";
 import { FormContainer } from "../FormContainer";
 import { addSandwichSchema, AddSandwichValues } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAddSandwich } from "@/hooks/queries/useGetSandwich/useGetSandwich";
 
 interface AddSandwichFormProps {
   sandwich: ISandwich;
@@ -23,6 +23,8 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
   resetSandwichGeneration,
   generateSandwich,
 }) => {
+  const { mutate } = useAddSandwich();
+
   const form = useForm<AddSandwichValues>({
     resolver: zodResolver(addSandwichSchema),
     defaultValues: {
@@ -31,7 +33,7 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
   });
 
   const onSubmit = async ({ name }: { name: string }) => {
-    await insertSandwich(name, sandwich);
+    mutate({ name, sandwich });
     resetSandwichGeneration();
   };
 

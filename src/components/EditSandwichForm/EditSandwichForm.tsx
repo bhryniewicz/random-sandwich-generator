@@ -64,6 +64,9 @@ export const EditSandwichForm = () => {
   //usprawnic nawigacje na stronach
   //toasty z informacje czy sie powidolo czy nie
   //bug z undeifned products jak strona jest dluzej nieuzywana
+  //mobile - calosc apki
+  //testy zaczac pisac
+
 
   return (
     <FormContainer title={"Edit your sandwich"}>

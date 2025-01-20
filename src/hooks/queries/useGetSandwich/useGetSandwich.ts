@@ -1,6 +1,8 @@
-import { getSandwich } from "@/server/insertSandwich";
-import { useQuery } from "@tanstack/react-query";
+import { getSandwich, insertSandwich } from "@/server/insertSandwich";
+import { ISandwich } from "@/types/sandwich";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+//query
 export const useGetSandwich = (id: string) => {
   const { data: sandwichData, isLoading: isSandwichDataLoading } = useQuery({
     queryKey: ["sandwich", id],
@@ -10,4 +12,22 @@ export const useGetSandwich = (id: string) => {
   });
 
   return { sandwichData, isSandwichDataLoading };
+};
+
+//mutation
+export const useAddSandwich = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationKey: ["add-sandwich"],
+    mutationFn: async (body) => {
+      const { name, sandwich } = body;
+      await insertSandwich(name, sandwich);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["sandwiches-search"] });
+    },
+  });
+
+  return { mutate };
 };

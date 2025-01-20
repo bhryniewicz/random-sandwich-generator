@@ -1,7 +1,6 @@
 import { ICreatedSandwich, ISandwich } from "@/types/sandwich";
 
 export const getSandwich = async (id: string): Promise<ICreatedSandwich> => {
-  console.log("zaczynam pobierac kanapke");
   const response = await fetch(`http://localhost:3000/api/sandwich/${id}`, {
     method: "GET",
     headers: {

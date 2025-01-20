@@ -1,6 +1,6 @@
 import clientPromise from "@/lib/mongodb/mongodb";
 
-export const getSandwiches = async (filter: string) => {
+export const getSandwiches = async (filter?: string) => {
   try {
     const client = await clientPromise;
     const db = client.db("sandwiches");
