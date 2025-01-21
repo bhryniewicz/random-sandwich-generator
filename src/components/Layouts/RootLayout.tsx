@@ -33,7 +33,7 @@ export default function RootLayout({
       <body>
         <QueryClientProvider client={queryClient}>
           <SandwichFiltersProvider>
-            <div className="flex flex-col gradient">
+            <div className="flex flex-col ">
               <Navbar />
               <div className="flex items-center justify-center h-[90vh] w-full">
                 {children}

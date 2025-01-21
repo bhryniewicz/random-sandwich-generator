@@ -46,6 +46,8 @@ export const EditSandwichForm = () => {
   };
 
   //pomyslec nad landing page
+  //https://www.behance.net/gallery/206131529/Farm-Website?tracking_source=search_projects|food+website+web+design&l=69
+
   //page dla sandwicha
   //dodanie autofocusa na input gdy sie pojawi addsandwhicform
   //usprawnic nawigacje na stronach
@@ -80,10 +82,10 @@ export const EditSandwichForm = () => {
               defaultValue={name}
               label={"Sandwich name"}
             />
-            <FormLabel>
+            <div>
               <h4 className="font-luckiest text-lg text-[#471a08]">Sandwich</h4>
               <Separator />
-            </FormLabel>
+            </div>
             <ComboboxSelect<IBreadStuff>
               items={breadStuff}
               defaultValue={bread}
