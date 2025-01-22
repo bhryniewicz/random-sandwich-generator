@@ -4,7 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import "@/app/globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Luckiest_Guy, Roboto } from "next/font/google";
+import { Lato, Luckiest_Guy } from "next/font/google";
 import { SandwichFiltersProvider } from "@/contexts/sandwichFIltersContext";
 
 const luckiest_guy = Luckiest_Guy({
@@ -14,9 +14,9 @@ const luckiest_guy = Luckiest_Guy({
   variable: "--font-luckiest",
 });
 
-const roboto = Roboto({
+const roboto = Lato({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["300", "400", "700"],
   display: "swap",
   variable: "--font-roboto",
 });

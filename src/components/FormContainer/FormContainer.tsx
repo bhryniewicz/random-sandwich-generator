@@ -10,7 +10,7 @@ export const FormContainer: FC<FormContainerProps> = ({ children, title }) => {
   return (
     <div className="flex flex-col">
       <h1 className="font-luckiest text-lg text-[#471a08]">{title}</h1>
-      <Card className="p-16 w-[600px] border-4 border-[#471a08] ">
+      <Card className="md:p-16 p-4 w-full md:w-[600px] border-4 border-[#471a08] ">
         {children}
       </Card>
     </div>

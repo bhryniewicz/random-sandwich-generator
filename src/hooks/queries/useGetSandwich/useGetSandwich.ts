@@ -1,5 +1,4 @@
 import { getSandwich, insertSandwich } from "@/services/api/sandwich";
-import { ISandwich } from "@/types/sandwich";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 //query

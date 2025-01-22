@@ -6,7 +6,7 @@ import { notFound, useParams } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EditSandwichValues, sandwichSchema } from "./schema";
-import { Form, FormLabel } from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { IBreadStuff, ISauce, ProductBase } from "@/types/products";
 import { ComboboxSelect } from "@/components/ComboboxSelect";
 import { Button } from "@/components/ui/button";
@@ -45,15 +45,18 @@ export const EditSandwichForm = () => {
     await editSandwich(editedSandwich);
   };
 
-  //pomyslec nad landing page
+  //jutrzejsze cele
   //mobile - calosc apki
+  //jesli sie uda
+  //page dla sandwicha
+  //usprawnic nawigacje na stronach
+  //redesign formularzy - calego sandwich generator
+
   //https://www.behance.net/gallery/206131529/Farm-Website?tracking_source=search_projects|food+website+web+design&l=69
 
-  //page dla sandwicha
   //testy zaczac pisac
   //toasty z informacje czy sie powidolo czy nie
   //dodanie autofocusa na input gdy sie pojawi addsandwhicform
-  //usprawnic nawigacje na stronach
   //dodac tez rozne filtry - search i przez status -> status juz tylko
   //local storage§ / cookies zapis preferencji
   //npm package dla kanapki

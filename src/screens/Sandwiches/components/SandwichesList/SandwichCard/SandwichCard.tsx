@@ -45,8 +45,8 @@ export const SandwichCard = ({
           <p>{name}</p>
           <p className="text-[10px] text-gray-400">
             {editedAt
-              ? `Edited at: ${formatDate(editedAt, "dd mm yyyy : kk mm")}`
-              : `Created at: ${formatDate(createdAt, "dd mm yyyy : kk mm")}`}
+              ? `Edited at: ${formatDate(editedAt, "dd MM yyyy : kk mm")}`
+              : `Created at: ${formatDate(createdAt, "dd MM yyyy : kk mm")}`}
           </p>
         </Link>
         <div className="hidden md:flex items-center justify-center">

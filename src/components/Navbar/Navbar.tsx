@@ -16,7 +16,7 @@ export const Navbar = () => {
   });
 
   return (
-    <div className="flex justify-between items-center uppercase text-[24px] text-[#471a08] bg-[#f4dac9] px-8 py-4 md:py-0 md:px-16 font-luckiest h-[10vh]">
+    <div className="flex justify-between items-center uppercase text-[24px] text-[#471a08] bg-[#f4dac9] px-8 py-6 md:py-0 md:px-16 font-luckiest min-h-[10vh]">
       <div className="flex items-center">
         <Image
           src={Sandwich}

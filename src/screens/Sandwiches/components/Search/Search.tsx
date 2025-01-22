@@ -29,7 +29,7 @@ export const Search: FC<SearchProps> = ({ setText }) => {
       type="search"
       onChange={(e) => handleSearch(e.target.value)}
       placeholder="Search for your sandwich"
-      className="bg-white text-black border-2 border-orange_primary"
+      className="bg-[#ffb654] text-black border-2 border-orange_primary placeholder:font-luckiest placeholder:text-white placeholder:tracking-wider placeholder:text-lg"
     />
   );
 };

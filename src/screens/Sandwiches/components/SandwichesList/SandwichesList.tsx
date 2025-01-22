@@ -20,9 +20,9 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2">
-      <div className="h-[100%] overflow-hidden">
+      <div className="h-full overflow-hidden">
         <Search setText={setText} />
-        <p className="pt-4 font-semibold text-lg text-dark_brown">
+        <p className="pt-4 font-semibold text-md text-dark_brown">
           All saved sandwiches:{" "}
           <span className=" font-bold">{sandwichList?.length}</span>
         </p>
@@ -33,7 +33,7 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
         >
-          <div className="h-full flex flex-col gap-2 overflow-y-auto scroll-smooth overscroll-y-none no-scrollbar">
+          <div className="md:h-[77vh] flex flex-col gap-2 overflow-y-auto scroll-smooth overscroll-y-none no-scrollbar">
             <AnimatePresence>
               {sandwichList?.map((sandwich) => {
                 return <SandwichCard key={sandwich._id} {...sandwich} />;

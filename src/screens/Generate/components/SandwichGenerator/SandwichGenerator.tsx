@@ -36,7 +36,7 @@ export const SandwichGenerator = () => {
           <h1 className="font-luckiest text-lg text-[#471a08]">
             Generate the finest sandwich
           </h1>
-          <Card className="p-16 w-[600px] border-4 border-[#471a08]">
+          <Card className="p-4 md:p-16 w-ful md:w-[600px] border-4 border-[#471a08]">
             <SandwichFilters products={products} />
             <Button
               className="flex justify-center items-center w-full py-12 bg-orange_primary text-[40px] font-luckiest"
@@ -77,6 +77,7 @@ export const SandwichGenerator = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 0.5 }}
+          className="pb-8"
         >
           <AddSandwichForm
             sandwich={sandwich}
