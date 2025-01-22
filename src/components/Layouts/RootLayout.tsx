@@ -35,7 +35,7 @@ export default function RootLayout({
           <SandwichFiltersProvider>
             <div className="flex flex-col ">
               <Navbar />
-              <div className="flex items-center justify-center h-[90vh] w-full">
+              <div className="flex items-center justify-center w-full">
                 {children}
               </div>
             </div>

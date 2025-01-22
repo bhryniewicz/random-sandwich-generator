@@ -7,7 +7,7 @@ export const Sandwiches = ({
   sandwiches: ICreatedSandwich[];
 }) => {
   return (
-    <div className="self-start mt-8">
+    <div className="flex justify-center w-full bg-[#f4dac9] h-[90vh] pt-8">
       <SandwichesList sandwiches={sandwiches} />
     </div>
   );

@@ -9,7 +9,6 @@ import { Trash } from "lucide-react";
 import { ICreatedSandwich } from "@/types/sandwich";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 export const SandwichCard = ({
   _id,
@@ -31,7 +30,7 @@ export const SandwichCard = ({
       exit={{ opacity: 0, x: -100 }}
       transition={{ duration: 0.25 }}
     >
-      <Card className="w-full grid grid-cols-12 bg-white px-4 border-2 border-dark_brown">
+      <Card className="w-full grid grid-cols-12 bg-white px-4 border-2 border-dark_brown hover:shadow-[0_1px_5px_rgba(101,67,33,0.6)] transition-shadow duration-200">
         <Image src={Sandwich} alt="sandwich photo" width="100" height={"100"} />
         <Link
           href={`/sandwiches/${_id}`}

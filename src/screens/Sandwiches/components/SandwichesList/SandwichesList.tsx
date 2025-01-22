@@ -19,27 +19,34 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
   const { sandwichList } = useSandwichSearch(sandwiches, searchParam);
 
   return (
-    <div className="container flex flex-col items-start gap-2">
-      <Search setText={setText} />
-      <p>
-        Search results:{" "}
-        <span className="text-orange_primary font-bold">
-          {sandwichList?.length}
-        </span>
-      </p>
-      <motion.div
-        className="grid grid-cols-2 gap-4 pt-4"
-        key="initial-list-state"
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
-      >
-        <AnimatePresence>
-          {sandwichList?.map((sandwich) => {
-            return <SandwichCard key={sandwich._id} {...sandwich} />;
-          })}
-        </AnimatePresence>
-      </motion.div>
+    <div className="grid grid-cols-2 px-16">
+      <div className="h-[100%] overflow-hidden">
+        <Search setText={setText} />
+        <p className="pt-4 font-semibold text-lg text-dark_brown">
+          All saved sandwiches:{" "}
+          <span className=" font-bold">{sandwichList?.length}</span>
+        </p>
+        <motion.div
+          className="flex flex-col gap-2 py-4 mb-4 h-[100%]"
+          key="initial-list-state"
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+        >
+          <div className="h-full flex flex-col gap-2 overflow-y-auto scroll-smooth overscroll-y-none no-scrollbar">
+            <AnimatePresence>
+              {sandwichList?.map((sandwich) => {
+                return <SandwichCard key={sandwich._id} {...sandwich} />;
+              })}
+            </AnimatePresence>
+          </div>
+        </motion.div>
+      </div>
+      <div className="pl-8 pb-4">
+        <div className="w-full h-full bg-[#ffb654] rounded-xl">
+          wymyslic co z ta przestrzenia
+        </div>
+      </div>
     </div>
   );
 };
