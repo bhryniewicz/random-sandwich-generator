@@ -30,11 +30,17 @@ export const SandwichCard = ({
       exit={{ opacity: 0, x: -100 }}
       transition={{ duration: 0.25 }}
     >
-      <Card className="w-full grid grid-cols-12 bg-white px-4 border-2 border-dark_brown hover:shadow-[0_1px_5px_rgba(101,67,33,0.6)] transition-shadow duration-200">
-        <Image src={Sandwich} alt="sandwich photo" width="100" height={"100"} />
+      <Card className="w-full grid grid-cols-12 bg-white md:px-4 border-2 border-dark_brown hover:shadow-[0_1px_5px_rgba(101,67,33,0.6)] transition-shadow duration-200">
+        <Image
+          src={Sandwich}
+          alt="sandwich photo"
+          width="100"
+          height={"100"}
+          className="col-span-2 md:col-span-1"
+        />
         <Link
           href={`/sandwiches/${_id}`}
-          className="flex flex-col justify-center col-span-10 pl-4"
+          className="flex flex-col justify-center col-span-9 md:col-span-10 pl-4"
         >
           <p>{name}</p>
           <p className="text-[10px] text-gray-400">
@@ -43,7 +49,7 @@ export const SandwichCard = ({
               : `Created at: ${formatDate(createdAt, "dd mm yyyy : kk mm")}`}
           </p>
         </Link>
-        <div className="flex items-center justify-center">
+        <div className="hidden md:flex items-center justify-center">
           <Trash
             onClick={handleDelete}
             className="cursor-pointer text-dark_brown hover:text-orange_secondary transition-colors duration-200"

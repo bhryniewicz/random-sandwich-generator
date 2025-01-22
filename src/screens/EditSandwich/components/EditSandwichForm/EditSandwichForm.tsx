@@ -46,9 +46,12 @@ export const EditSandwichForm = () => {
   };
 
   //pomyslec nad landing page
+  //mobile - calosc apki
   //https://www.behance.net/gallery/206131529/Farm-Website?tracking_source=search_projects|food+website+web+design&l=69
 
   //page dla sandwicha
+  //testy zaczac pisac
+  //toasty z informacje czy sie powidolo czy nie
   //dodanie autofocusa na input gdy sie pojawi addsandwhicform
   //usprawnic nawigacje na stronach
   //dodac tez rozne filtry - search i przez status -> status juz tylko
@@ -60,10 +63,7 @@ export const EditSandwichForm = () => {
   //jezeli odswizeymy z query w adresie to nie zmienia sie w zaleznosci od tego wartosci
   //pomyslenie nad nowymi propertisami i jak dalej rozinac
   //pododawac produkty, dodac do nich emotki
-  //toasty z informacje czy sie powidolo czy nie
   //bug z undeifned products jak strona jest dluzej nieuzywana
-  //mobile - calosc apki
-  //testy zaczac pisac
 
   return (
     <FormContainer title={"Edit your sandwich"}>

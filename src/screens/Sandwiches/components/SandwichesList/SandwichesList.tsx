@@ -19,7 +19,7 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
   const { sandwichList } = useSandwichSearch(sandwiches, searchParam);
 
   return (
-    <div className="grid grid-cols-2 px-16">
+    <div className="grid grid-cols-1 md:grid-cols-2">
       <div className="h-[100%] overflow-hidden">
         <Search setText={setText} />
         <p className="pt-4 font-semibold text-lg text-dark_brown">
@@ -42,7 +42,7 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
           </div>
         </motion.div>
       </div>
-      <div className="pl-8 pb-4">
+      <div className="hidden md:block pl-8 pb-4">
         <div className="w-full h-full bg-[#ffb654] rounded-xl">
           wymyslic co z ta przestrzenia
         </div>
