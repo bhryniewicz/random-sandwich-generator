@@ -16,8 +16,8 @@ export const Navbar = () => {
   });
 
   return (
-    <div className="flex justify-between items-center uppercase text-[24px] text-[#471a08] bg-[#f4dac9] px-8 py-6 md:py-0 md:px-16 font-luckiest min-h-[10vh]">
-      <div className="flex items-center">
+    <div className="flex justify-between items-center uppercase text-[24px] text-[#471a08] bg-[#f4dac9] px-8 py-6 md:py-0 md:px-16 font-luckiest h-[12vh]">
+      <Link href="/" className="flex items-center">
         <Image
           src={Sandwich}
           width={100}
@@ -30,7 +30,7 @@ export const Navbar = () => {
           <br />
           Generator
         </h1>
-      </div>
+      </Link>
       <SandwichIcon
         className="block md:hidden"
         size={32}

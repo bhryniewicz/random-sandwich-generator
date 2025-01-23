@@ -7,7 +7,7 @@ export const useSandwichSearch = (
   initialData: ICreatedSandwich[],
   searchParam: string = ""
 ) => {
-  const { data: sandwichList, isLoading } = useQuery<ICreatedSandwich[]>({
+  const { data: sandwichList, isLoading, isPending, isFetching } = useQuery<ICreatedSandwich[]>({
     queryKey: ["sandwiches-search", searchParam],
     queryFn: async () => {
       const response = await fetch(
@@ -31,7 +31,7 @@ export const useSandwichSearch = (
     initialData: searchParam === "" ? initialData : undefined,
   });
 
-  return { sandwichList, isLoading };
+  return { sandwichList, isLoading, isPending, isFetching };
 };
 
 //mutation
