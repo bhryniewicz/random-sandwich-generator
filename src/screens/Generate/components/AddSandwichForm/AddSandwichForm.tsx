@@ -99,7 +99,7 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
                 <span className="font-luckiest text-[#471a08]">or</span>
                 <Separator className="flex-1" />
               </div>
-              <div className="flex gap-4">
+              <div className="flex flex-col md:flex-row gap-4">
                 <Button
                   variant={"secondary"}
                   type="button"

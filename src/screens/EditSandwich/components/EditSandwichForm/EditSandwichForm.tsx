@@ -46,7 +46,6 @@ export const EditSandwichForm = () => {
   };
 
   //jutrzejsze cele
-  //mobile - calosc apki
   //jesli sie uda
   //page dla sandwicha
   //usprawnic nawigacje na stronach

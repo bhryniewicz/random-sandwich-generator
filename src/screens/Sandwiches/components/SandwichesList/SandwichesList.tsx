@@ -7,6 +7,8 @@ import { useDebounce } from "use-debounce";
 import { SandwichCard } from "./SandwichCard";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search } from "../Search";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 interface SandwichesListProps {
   sandwiches: ICreatedSandwich[];
@@ -18,7 +20,7 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
   const [searchParam] = useDebounce(text, 500);
   const { sandwichList } = useSandwichSearch(sandwiches, searchParam);
 
-  return (
+  return sandwichList.length > 0 ? (
     <div className="grid grid-cols-1 md:grid-cols-2">
       <div className="h-full overflow-hidden">
         <Search setText={setText} />
@@ -47,6 +49,20 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
           wymyslic co z ta przestrzenia
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="flex flex-col justify-center items-center">
+      <h4 className="text-[50px] text-dark_brown font-luckiest">
+        No sandwiches added yet
+      </h4>
+      <Link href="/generate">
+        <Button
+          variant={"default"}
+          className="px-16 py-8 text-[30px] font-luckiest"
+        >
+          Generate one
+        </Button>
+      </Link>
     </div>
   );
 };

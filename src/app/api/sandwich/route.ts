@@ -3,6 +3,7 @@ import clientPromise from "@/lib/mongodb/mongodb";
 import { ObjectId } from "mongodb";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+import { redirect } from "next/navigation";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -85,7 +86,6 @@ export async function PUT(request: NextRequest) {
     const result = await col.updateOne(filter, {
       $set: { ...updatedFields },
     });
-    revalidatePath("/sandwiches");
 
     if (result.matchedCount === 0) {
       return NextResponse.json(
@@ -102,4 +102,5 @@ export async function PUT(request: NextRequest) {
     console.error(e);
     NextResponse.json("bad");
   }
+
 }

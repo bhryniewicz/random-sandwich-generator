@@ -1,6 +1,6 @@
 export const routes = [
   {
-    href: "/",
+    href: "generate",
     label: "Generate",
   },
   {

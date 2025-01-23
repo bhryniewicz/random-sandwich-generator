@@ -1,4 +1,5 @@
 import { ICreatedSandwich, ISandwich } from "@/types/sandwich";
+import { redirect } from "next/navigation";
 
 export const getSandwich = async (id: string): Promise<ICreatedSandwich> => {
   const response = await fetch(`http://localhost:3000/api/sandwich/${id}`, {
@@ -62,4 +63,6 @@ export const editSandwich = async (sandwich: ICreatedSandwich) => {
   } catch (e) {
     console.error(e);
   }
+
+  redirect(`/sandwiches/${sandwich._id}`);
 };
