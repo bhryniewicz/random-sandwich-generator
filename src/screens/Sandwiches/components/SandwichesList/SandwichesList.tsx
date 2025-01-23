@@ -20,7 +20,7 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
   const [searchParam] = useDebounce(text, 500);
   const { sandwichList } = useSandwichSearch(sandwiches, searchParam);
 
-  return sandwichList.length > 0 ? (
+  return sandwichList!.length > 0 ? (
     <div className="grid grid-cols-1 md:grid-cols-2">
       <div className="h-full overflow-hidden">
         <Search setText={setText} />
@@ -58,7 +58,7 @@ export const SandwichesList: FC<SandwichesListProps> = ({ sandwiches }) => {
       <Link href="/generate">
         <Button
           variant={"default"}
-          className="px-16 py-8 text-[30px] font-luckiest"
+          className="flex justify-center items-center w-full p-12 bg-orange_primary text-[40px] font-luckiest"
         >
           Generate one
         </Button>

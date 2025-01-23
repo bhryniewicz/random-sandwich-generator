@@ -48,11 +48,15 @@ export default async function Home() {
               sandwich trivia, history, and pro tips. There’s something for
               everyone—start exploring now!
             </p>
-            <Card image={Generate} text="Generate something special" />
+            <Card
+              image={Generate}
+              text="Generate something special"
+              href="generate"
+            />
           </div>
           <div className="col-span-2 flex flex-col gap-6">
-            <Card image={Compose} text="Compose on your own" />
-            <Card image={Geek} text="For computer geeks" />
+            <Card image={Compose} text="Compose on your own" href="compose" />
+            <Card image={Geek} text="For computer geeks" href="geeks" />
           </div>
         </div>
       </div>
@@ -71,10 +75,15 @@ export default async function Home() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-10 gap-6 mt-8 md:mt-16">
           <div className="md:col-span-3 md:col-start-3">
-            <Card image={Compose} text="Check what is on your list" isWhite />
+            <Card
+              image={Compose}
+              text="Check what is on your list"
+              isWhite
+              href="sandwiches"
+            />
           </div>
           <div className="md:col-span-3 md:col-start-6">
-            <Card image={Compose} text="Share / rate" isWhite />
+            <Card image={Compose} text="Share / rate" isWhite href="best-of" />
           </div>
         </div>
       </div>
@@ -85,10 +94,12 @@ export default async function Home() {
 const Card = ({
   image,
   text,
+  href,
   isWhite,
 }: {
   image: StaticImageData;
   text: string;
+  href: string;
   isWhite?: boolean;
 }) => {
   return (
@@ -104,9 +115,11 @@ const Card = ({
       />
       <div className="flex items-center justify-between p-4 border-t border-gray-300">
         <h1 className="font-extrabold text-lg">{text}</h1>
-        <ArrowBigRight
-          className={`${isWhite} ? 'text-dark_brown' : 'text-white`}
-        />
+        <Link href={href}>
+          <ArrowBigRight
+            className={`${isWhite} ? 'text-dark_brown' : 'text-white`}
+          />
+        </Link>
       </div>
     </div>
   );

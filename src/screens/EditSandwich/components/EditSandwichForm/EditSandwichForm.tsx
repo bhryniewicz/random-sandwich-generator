@@ -46,10 +46,15 @@ export const EditSandwichForm = () => {
   };
 
   //jutrzejsze cele
-  //jesli sie uda
   //page dla sandwicha
-  //usprawnic nawigacje na stronach
+    //sporobwac pokazac to w fjanych polach z obrazami - wuykminic jak to wgl zorbic
+    // przyciski del/ edit
+    //pokazac tyoy itd
   //redesign formularzy - calego sandwich generator
+  //stworzyc 1 layout dla wszystkich komponentow
+  //npm package dla kanapki
+  //not found page
+  //local storage§ / cookies zapis preferencji
 
   //https://www.behance.net/gallery/206131529/Farm-Website?tracking_source=search_projects|food+website+web+design&l=69
 
@@ -57,8 +62,6 @@ export const EditSandwichForm = () => {
   //toasty z informacje czy sie powidolo czy nie
   //dodanie autofocusa na input gdy sie pojawi addsandwhicform
   //dodac tez rozne filtry - search i przez status -> status juz tylko
-  //local storage§ / cookies zapis preferencji
-  //npm package dla kanapki
   //dodanie bloga
   //zobaczyc jakies api z jedzeniem????
   //filtry na kanapke - zrobiony basic stuff, dodac o wiele wiece
