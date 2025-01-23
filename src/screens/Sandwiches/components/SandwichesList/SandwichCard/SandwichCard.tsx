@@ -4,8 +4,6 @@ import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import Sandwich from "@/assets/sandwich.png";
 import { formatDate } from "date-fns";
-import { useDeleteSandwich } from "@/hooks/queries/useSandwichSearch/useSandwichSearch";
-import { Trash } from "lucide-react";
 import { ICreatedSandwich } from "@/types/sandwich";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -24,12 +22,6 @@ export const SandwichCard: FC<SandwichCardProps> = ({
   onHoverStart,
   onHoverEnd,
 }) => {
-  const { mutate } = useDeleteSandwich();
-
-  const handleDelete = () => {
-    mutate(_id);
-  };
-
   return (
     <motion.div
       key={_id}
@@ -59,13 +51,6 @@ export const SandwichCard: FC<SandwichCardProps> = ({
               : `Created at: ${formatDate(createdAt, "dd MM yyyy : kk mm")}`}
           </p>
         </Link>
-        <div className="hidden md:flex items-center justify-center">
-          <Trash
-            onClick={handleDelete}
-            className="cursor-pointer text-dark_brown hover:text-orange_secondary transition-colors duration-200"
-            strokeWidth={2}
-          />
-        </div>
       </Card>
     </motion.div>
   );
