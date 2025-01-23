@@ -104,6 +104,7 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
                   variant={"secondary"}
                   type="button"
                   onClick={generateSandwich}
+                  className="flex-1"
                 >
                   Generate again
                 </Button>
@@ -111,6 +112,7 @@ export const AddSandwichForm: FC<AddSandwichFormProps> = ({
                   variant={"secondary"}
                   type="button"
                   onClick={resetSandwichGeneration}
+                  className="flex-1"
                 >
                   Cancel
                 </Button>

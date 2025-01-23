@@ -7,7 +7,7 @@ export const Sandwiches = ({
   sandwiches: ICreatedSandwich[];
 }) => {
   return (
-    <div className="flex justify-center w-full bg-[#f4dac9] md:h-[90vh] pt-4 px-2 md:px-16">
+    <div className="flex justify-center w-full bg-[#f4dac9] min-h-[88vh] md:h-[88vh] pt-4 px-2 md:px-16">
       <SandwichesList sandwiches={sandwiches} />
     </div>
   );

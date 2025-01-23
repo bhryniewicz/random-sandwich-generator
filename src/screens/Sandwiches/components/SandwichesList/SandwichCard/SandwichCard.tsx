@@ -9,13 +9,21 @@ import { Trash } from "lucide-react";
 import { ICreatedSandwich } from "@/types/sandwich";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { FC } from "react";
 
-export const SandwichCard = ({
+interface SandwichCardProps extends ICreatedSandwich {
+  onHoverStart: () => void;
+  onHoverEnd: () => void;
+}
+
+export const SandwichCard: FC<SandwichCardProps> = ({
   _id,
   name,
   editedAt,
   createdAt,
-}: ICreatedSandwich) => {
+  onHoverStart,
+  onHoverEnd,
+}) => {
   const { mutate } = useDeleteSandwich();
 
   const handleDelete = () => {
@@ -29,6 +37,8 @@ export const SandwichCard = ({
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -100 }}
       transition={{ duration: 0.25 }}
+      onHoverStart={onHoverStart}
+      onHoverEnd={onHoverEnd}
     >
       <Card className="w-full grid grid-cols-12 bg-white md:px-4 border-2 border-dark_brown hover:shadow-[0_1px_5px_rgba(101,67,33,0.6)] transition-shadow duration-200">
         <Image
