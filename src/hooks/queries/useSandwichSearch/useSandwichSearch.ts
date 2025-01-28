@@ -1,13 +1,17 @@
-import { deleteSandwich } from "@/services/api/sandwich";
 import { ICreatedSandwich } from "@/types/sandwich";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 //query
 export const useSandwichSearch = (
   initialData: ICreatedSandwich[],
   searchParam: string = ""
 ) => {
-  const { data: sandwichList, isLoading, isPending, isFetching } = useQuery<ICreatedSandwich[]>({
+  const {
+    data: sandwichList,
+    isLoading,
+    isPending,
+    isFetching,
+  } = useQuery<ICreatedSandwich[]>({
     queryKey: ["sandwiches-search", searchParam],
     queryFn: async () => {
       const response = await fetch(
@@ -32,40 +36,4 @@ export const useSandwichSearch = (
   });
 
   return { sandwichList, isLoading, isPending, isFetching };
-};
-
-//mutation
-export const useDeleteSandwich = () => {
-  const queryClient = useQueryClient();
-
-  const { mutate } = useMutation({
-    mutationKey: ["delete-sandwich"],
-    mutationFn: async (id: string) => {
-      await deleteSandwich(id);
-    },
-    onMutate: async (id: string) => {
-      await queryClient.cancelQueries({ queryKey: ["sandwiches-search"] });
-      const previousSandwiches = queryClient.getQueryData<ICreatedSandwich[]>([
-        "sandwiches-search",
-      ]);
-
-      queryClient.setQueryData<ICreatedSandwich[]>(
-        ["sandwiches-search"],
-        (old) => old?.filter((sandwich) => sandwich._id !== id) || []
-      );
-
-      return { previousSandwiches };
-    },
-    onError: (err, id, context) => {
-      queryClient.setQueryData(
-        ["sandwiches-search"],
-        context?.previousSandwiches
-      );
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["sandwiches-search"] });
-    },
-  });
-
-  return { mutate };
 };

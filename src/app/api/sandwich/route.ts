@@ -49,7 +49,6 @@ export async function DELETE(request: NextRequest) {
 
     const query = { _id: new ObjectId(req.id) };
     const result = await col.deleteOne(query);
-    revalidatePath("/sandwiches");
 
     if (result.deletedCount === 1) {
       return NextResponse.json(
@@ -102,5 +101,4 @@ export async function PUT(request: NextRequest) {
     console.error(e);
     NextResponse.json("bad");
   }
-
 }

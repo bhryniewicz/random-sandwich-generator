@@ -42,16 +42,18 @@ export const insertSandwich = async (name: string, sandwich: ISandwich) => {
 
 export const deleteSandwich = async (id: string) => {
   try {
-    const response = await fetch(`/api/sandwich`, {
+    await fetch(`/api/sandwich`, {
       method: "DELETE",
       body: JSON.stringify({
         id,
       }),
     });
-    return response;
   } catch (e) {
     console.error(e);
   }
+
+  console.log("lecymy redirect");
+  redirect("/");
 };
 
 export const editSandwich = async (sandwich: ICreatedSandwich) => {
@@ -64,5 +66,6 @@ export const editSandwich = async (sandwich: ICreatedSandwich) => {
     console.error(e);
   }
 
+  console.log("lecymy redirect");
   redirect(`/sandwiches/${sandwich._id}`);
 };
